@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>The bug database</title>
+  <title>ClabureDB</title>
   <%= stylesheet_link_tag    "application" %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'jquery.js' %>
@@ -10,15 +11,22 @@
 <body>
 	<div id="content_wrap">
 		<a href="#top" name="top"></a>
-		<h1 class="main_title"><%= link_to 'Bug Database', '/index'%></h1>
+		<h1 class="main_title"><%= link_to('/index') do %>
+			<span style="color:#001010;">Clabure</span><span style="color:#e03040;">DB</span>: Classified Bug-Reports Database
+		<% end %></h1>
 		<div class="top_bar">
 			<div class="menu_bar">
 				<%= link_to 'Show All Errors', '/type/all/'%> |
 			    <a href="/tools/">Show tools</a>
 			</div>
 			<div class="search_bar">
-				<form action="/search/" method="POST">
-					<input id="search_input" type="text" name="search" value="Search filename...">
+				<form action="/search/" method="post">
+					<div>
+					<select id="db" >
+						<option value="Linux kernel 2.6.28">Linux kernel 2.6.28</option>
+					</select>
+					<input id="search_input" type="text" name="search" value="Search filename..." />
+					</div>
 				</form>
 				<!--RegExp? <input type="checkbox" name="regexp" value="true"/>-->
 			</div>
