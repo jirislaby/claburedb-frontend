@@ -1,0 +1,124 @@
+<%= javascript_include_tag params[:controller] %>
+<%= stylesheet_link_tag params[:controller] %>
+
+<div>
+	This is a database of known bugs and false positives in real software projects. So far, we support only the Linux Kernel 2.6.28 and selected kinds of bugs. The main purpose of the database is to support research and development in the area of bug-finding techniques and tools by providing data for their automatic evaluation.
+	<br/>
+	We are currently focused on filling the database. We plan to support more software projects and more kinds of bug later. This web interface of the database is also an interim one.
+	<br/>
+	If you have any questions or suggestions, please feel free to contact us.
+	<br/>
+	<a href="mailto:slaby@fi.muni.cz">Jiri Slaby</a>, <a href="mailto:strejcek@fi.muni.cz">Jan Strejcek</a> and <a href="mailto:trtik@fi.muni.cz">Marek Trtik</a>
+</div>
+
+<h1>Listing categories: </h1>
+<center>
+<table class="categories">
+  <thead class="header">
+    <th>Category<br/><span class="description">Description</span></th>
+	<th>Real errors</th>
+	<th>False positives</th>
+	<th>Unclassified</th>
+	<th>Overall count</th>
+  </thead>
+  <tbody>
+	<% 
+	real_count = 0
+    false_count = 0
+    unclass_count = 0
+
+	@types.each do |type| %>
+	<% next if type.overall_count == nil || type.overall_count == 0 %>
+	<% real_count+= type.real_count
+       false_count += type.false_count
+       unclass_count += type.unclass_count
+    %>
+	  <tr>
+	    <td>
+	    	<h5>
+			    <a href="/type/<%= type.id %>"><%= type.name %></a>
+				<% if type.CWE_error != nil %>
+					<a href="http://cwe.mitre.org/data/definitions/<%= type.CWE_error %>.html" target="_blank" >
+						<img src="/assets/cwe.png" alt="CWE" title="CWE number: <%= type.CWE_error %>"/>
+					</a>
+				<% end %>
+			</h5>
+			<span class="description">
+	    		<%= type.short_description %>
+			</span>
+		</td>
+		<td class="count">
+			<% if type.real_count != nil && type.real_count != 0 %>
+			<a href="/type/<%= type.id %>/1"><%= type.real_count %></a>
+			<% else %>
+				<%= type.real_count %>
+			<% end %>
+		</td>
+		<td class="count">
+			<% if type.false_count != nil && type.false_count != 0 %>
+			<a href="/type/<%= type.id %>/-1"><%= type.false_count %></a>
+			<% else %>
+				<%= type.false_count %>
+			<% end %>
+		</td>
+		<td class="count">
+			<% if type.unclass_count != nil && type.unclass_count != 0 %>
+			<a href="/type/<%= type.id %>/0"><%= type.unclass_count %></a>
+			<% else %>
+				<%= type.unclass_count %>
+			<% end %>
+		</td>
+		<td class="count">
+			<% if type.overall_count != nil && type.overall_count != 0 %>
+			<a href="/type/<%= type.id %>"><%= type.overall_count %></a>
+			<% else %>
+				<%= type.overall_count %>
+			<% end %>
+		</td>
+	  </tr>
+	<% end %>
+	
+	<% if real_count+false_count+unclass_count %>
+	  <tr class="dark">
+	    <td>
+	    	<h5>
+			    <a href="/type/all">All categories</a>
+			</h5>
+			<span class="description"></span>
+		</td>
+		<td class="count">
+			<% if real_count != nil && real_count != 0 %>
+			<a href="/type/all/1"><%= real_count %></a>
+			<% else %>
+				<%= real_count %>
+			<% end %>
+		</td>
+		<td class="count">
+			<% if false_count != nil && false_count != 0 %>
+			<a href="/type/all/-1"><%= false_count %></a>
+			<% else %>
+				<%= false_count %>
+			<% end %>
+		</td>
+		<td class="count">
+			<% if unclass_count != nil && unclass_count != 0 %>
+			<a href="/type/all/0"><%= unclass_count %></a>
+			<% else %>
+				<%= unclass_count %>
+			<% end %>
+		</td>
+		<td class="count">
+			<% if real_count+false_count+unclass_count != 0 %>
+			<a href="/type/all"><%= real_count+false_count+unclass_count %></a>
+			<% else %>
+				<%= real_count+false_count+unclass_count %>
+			<% end %>
+		</td>
+	  </tr>
+	<% end %>
+	  	
+  </tbody>
+</table>
+</center>
+<br />
+

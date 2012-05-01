@@ -1,0 +1,19 @@
+<thead>
+	  <tr>
+	  	<% if @links_direction == nil then
+		@links_direction = {
+	     'error_type' => "desc",
+	      'loc_file' => "desc",
+	      'id' => "desc",
+		  'marking' => "desc"
+	    }
+		end
+		%>
+	    <th>#</th>
+		<th><%= link_to "Error type (Note)", "/"+params[:controller]+"/"+@ordering_method+""+@params+"/error_type/"+@links_direction["error_type"] %></th>
+		<th><%= link_to "File [Line]", "/"+params[:controller]+"/"+@ordering_method+""+@params+"/loc_file/"+@links_direction["loc_file"]  %></th>
+		<th>Url </th>
+		<th><%= link_to "Marking", "/"+params[:controller]+"/"+@ordering_method+""+@params+"/marking/"+@links_direction["marking"]  %></th>
+	    <th></th>
+	  </tr>
+</thead>

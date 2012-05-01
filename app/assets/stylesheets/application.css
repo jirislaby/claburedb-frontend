@@ -1,0 +1,273 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+body{
+	font-family: "lucida grande", verdana, tahoma, sans-serif;
+  	font-size: 13px;
+	color: #333;
+	background-color:#D0E2F3;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+
+a,a:visited{
+	color: #333;
+}
+a:active, a:hover{
+	color: #1088F9;
+}
+/*
+a.open_details, a.close_details{
+	text-decoration:none;
+} */
+table{
+ 	-moz-box-shadow: 0px 0px 10px #333;
+  	-webkit-box-shadow: 0px 0px 10px #333;
+  	box-shadow: 0px 0px 10px #333;
+}
+
+thead th, tr.dark td{
+	background-color: #333;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	height: 30px;
+	padding: 3px 6px 3px 6px;
+}
+thead th a, th a:visited, tr.dark td a{
+	color: #ffffff;
+}
+thead th a:hover, tr.dark td a:hover{
+	color: #1088F9;
+}
+
+.dark{
+color: #333333;
+}
+
+#top_box{
+	position: fixed;
+	left: 0px;
+	bottom: 100px;
+	font-weight: bold;
+	text-align: center;
+	font-size: 22px;
+	width: 30px;
+	height: 30px;
+	background-color: #ffffff;
+	-moz-box-shadow: 0px 0px 3px #333;
+  	-webkit-box-shadow: 0px 0px 3px #333;
+  	box-shadow: 0px 0px 3px #333;
+	-moz-border-radius-bottomright: 10px;
+	border-bottom-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-right-radius: 10px;
+}
+#top_box a, #top_box a:visited{
+	color: #333333;
+	text-decoration: none;
+}
+#top_box a:hover{
+	color: #1088F9;
+}
+
+.top_bar{
+	float:left;
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #333333;
+	margin-bottom: 10px;
+}
+.menu_bar{
+	float:left;
+}
+.search_bar{
+	float:right;
+}
+
+.search_bar input[type="text"]{
+	border: 1px #333333;
+	-moz-box-shadow: 0px 0px 5px #333333;
+  	-webkit-box-shadow: 0px 0px 5px #333333;
+  	box-shadow: 0px 0px 5px #333333;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	height: 25px;
+	width: 200px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#content_wrap{
+	width: 960px;
+	-moz-box-shadow: 0px 0px 10px #333333;
+  	-webkit-box-shadow: 0px 0px 10px #333333;
+  	box-shadow: 0px 0px 10px #333333;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;
+	padding: 20px 30px 120px 30px;
+}
+
+h1.main_title{
+	font-size: 33px;
+}
+
+
+.error_line_highlight{
+	background-color: #DD7700;
+}
+
+
+.errors{
+	border: 1px solid #ffffff;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 90%;
+}
+
+
+
+.errors td{
+	color: #ffffff;
+	padding: 5px 5px 5px 5px;
+	max-width: 200px;
+}
+/*
+.errors td a{
+	color: #fff;
+}
+    */
+.errors td h1,h2,h3,h4,h5{
+	color: #333333;
+}
+.errors td h1 a,h2 a,h3 a,h4 a,h5 a{
+	color: #333333;
+}
+
+.errors tr.false:nth-child(even){
+	background-color: #68BA54;
+}
+
+.errors tr.false:nth-child(odd){
+	background-color: #74C560;
+}
+
+.errors tr.false td{
+	color: #111111;	
+}
+.errors tr.false td a{
+	color: #111111;	
+}
+.errors tr.false td a:hover{
+	color: #ffffff;	
+}
+
+.errors tr.positive:nth-child(even){
+	background-color: #BC582C;
+}
+.errors tr.positive:nth-child(odd){
+	background-color: #D8632F;
+}
+.errors tr.positive td a{
+	color: #ffffff;	
+}
+.errors tr.positive td a:hover{
+	color: #333333;	
+}
+
+.errors tr.unclass td{
+	color: #111111;	
+}
+.errors tr.unclass td a{
+	color: #111111;	
+}
+.errors tr.unclass td a:hover{
+	color: #3d3d3d;	
+}
+.errors tr.unclass:nth-child(even){
+	background-color: #EFEFEF;
+}
+.errors tr.unclass:nth-child(odd){
+	background-color: #D6D6D6;
+}
+
+.error_details_source{
+	height: 300px;
+	width:100%;
+	overflow:auto;
+}
+
+
+
+
+.users{
+	border: 1px solid #333333;
+	 border-collapse: collapse;
+}
+
+.users tr {
+	border: 1px solid #ffffff;
+	background-color: #ADFF9C;
+}
+
+.users td{
+	border: 1px solid #333333;
+	color: #000000;
+	padding: 5px 5px 5px 5px;
+}
+
+
+
+.categories tbody tr:nth-child(even){
+	background-color: #D6D6D6;
+}
+
+.categories tbody tr:nth-child(odd){
+	background-color: #EFEFEF;
+}
+
+
+.categories a{
+	text-decoration: underline;
+}
+
+
+
+.categories h5{
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 27px;
+	margin: 0;
+	padding: 0;
+	
+}
+.categories .description{
+	font-style:italic;
+	font-size: 13px;
+	font-weight: normal;
+}
+.categories td{
+	padding: 3px 3px 3px 3px;
+	color: #111111;
+}
+.categories td a{
+	color: #111111;
+}
+.categories td a:hover{
+	color: #1088F9;
+}
+.categories td.count{
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+}
+

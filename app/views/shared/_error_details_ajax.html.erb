@@ -1,0 +1,43 @@
+<table class="categories">
+  	  <tr>
+	  	<td><b>User:</b></td>
+		<td class="black_font"> <%= link_to @error.user.name, @error.user %></td>
+	  </tr>
+	  <tr>
+	  	<td><b>Error type description:</b></td>
+		<td><%= @error.error_type.short_description %></td>
+	  </tr>
+	  <tr>
+	  	<td><b>Project:</b></td>
+		<td><a href="/project/project/<%=@error.project.id%>"><%= @error.project.name %></a></td>
+	  </tr>
+	  <tr>
+	  	<td><b>Project version:</b></td>
+		<td><a href="/project/version/<%=@error.project.id%>/<%=@error.project_version%>"><%= @error.project_version %></a></td>
+	  </tr>
+	  <tr>
+	  	<td><b>Tools:</b></td>
+		<td><% @error.tools.each do |tool| %>
+				<a href="/tools/tool/<%= tool.id %>">
+				<%= tool.name %> <%= tool.version!=nil ? "("+tool.version+")" : "" %>
+				</a><br/>
+			<% end %>
+		</td>
+	  </tr>
+	  <% if @error.url != nil && @error.url != ""  %>
+ 	  <tr>
+	  	<td><b>Url:</b></td>
+		<td><a href="<%= @error.url %>"><%= @error.url %></a></td>
+	  </tr>
+	  <% end %>
+	  
+ 	  
+	  
+	  <tr>
+	  	<td><b>Entered:</b></td>
+		<td><%= @error.timestamp_enter %></td>
+	  </tr>
+  </table>
+  <% if @error.loc_file_hash!=nil %>
+   <h3><a href="#" class="show_source_code dark" id="<%= @error.id %>">&#9660; Show source code</a></h3>
+  <% end %>

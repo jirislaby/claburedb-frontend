@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <title>The bug database</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'jquery.js' %>
+  <%= javascript_include_tag 'errors.js' %>
+</head>
+<body>
+	<div id="content_wrap">
+		<a href="#top" name="top"></a>
+		<h1 class="main_title"><%= link_to 'Bug Database', '/index'%></h1>
+		<div class="top_bar">
+			<div class="menu_bar">
+				<%= link_to 'Show All Errors', '/type/all/'%> |
+			    <a href="/tools/">Show tools</a>
+			</div>
+			<div class="search_bar">
+				<form action="/search/" method="POST">
+					<input id="search_input" type="text" name="search" value="Search filename...">
+				</form>
+				<!--RegExp? <input type="checkbox" name="regexp" value="true"/>-->
+			</div>
+		</div>
+		<br/>
+		<%= yield %>
+	</div>
+	<div id="top_box">
+		<a href="#top">&uarr;</a>
+	</div>
+</body>
+</html>

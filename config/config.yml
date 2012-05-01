@@ -1,0 +1,8 @@
+development:
+  sha1_path: "tmp/sha1/"
+
+test:
+  sha1_path: "tmp/sha1/"
+
+production:
+  sha1_path: "tmp/sha1/"

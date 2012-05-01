@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<h3>Showing source code for error <%=  @error.id %></h3>
+<p>
+  <br/>
+  <% if @source_output != "" %>
+	  <hr/>
+	  <h3>Source: </h3>
+	  <br/>
+	  <%= sanitize @source_output %>
+  <% end %>
+</p>

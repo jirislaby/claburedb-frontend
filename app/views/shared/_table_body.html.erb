@@ -1,0 +1,14 @@
+<tbody>
+	<% i = 1 %>
+	<% @errors.each do |error| %>
+	  <tr id="e<%= error.id %>" <%=  (error.marking<0)?"class='false'": (error.marking==0) ? "class='unclass'" : "class='positive'" %>>
+	    <td><%= i %></td>
+		<td><%= error.error_type.name %> <%= error.note != nil ? "("+error.note+")" : "" %></td>
+		<td><%= error.loc_file %> [<a href="/errors/source_code/<%= error.id %>/#n<%= error.loc_line-5 %>" title="Jump to source code" id="line<%= error.id %>"><%= error.loc_line %></a>]</td>
+		<td><a href="<%= error.url %>"><%= error.url %></a></td>
+		<td><%= (error.marking<0)?"False positive": (error.marking==0) ? "Unclassified" : "Real error" %></td>
+		<td><a href="/errors/<%= error.id %>" class="open_details" id="<%= error.id %>">&#9660; Details</a></td>
+	  </tr>
+	<% i+=1 %>
+	<% end %>
+</tbody>

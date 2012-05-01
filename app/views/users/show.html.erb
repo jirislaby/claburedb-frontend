@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<h2>Showing <%= @user.name %></h2>
+<p>
+  <table class="users">
+	  <tr>
+	  	<td><b>Id:</b></td>
+		<td><%= @user.id %></td>
+	  </tr>
+  	  <tr>
+	  	<td><b>Name:</b></td>
+		<td> <%= @user.name %></td>
+	  </tr>
+	  <tr>
+	  	<td><b>Affilitation:</b></td>
+		<td><%= @user.affilitation %></td>
+	  </tr>
+      <tr>
+	  	<td><b>Login:</b></td>
+		<td><%= @user.login %></td>
+	  </tr>
+	  <tr>
+	  	<td><b>Password:</b></td>
+		<td><%= @user.password %></td>
+	  </tr>
+ 
+  </table>
+</p>
+<hr>
+<h2>User's recent errors:</h2>
+<br>
+<table class="errors">
+  <%= render :partial => "shared/table_head" %>
+  <%= render :partial => "shared/table_body", :object => @errors %>
+</table>

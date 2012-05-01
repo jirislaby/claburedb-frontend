@@ -1,0 +1,21 @@
+<%= javascript_include_tag params[:controller] %>
+<%= stylesheet_link_tag params[:controller] %>
+
+<h1>Search results: </h1>
+<center>
+
+<% if @errors.count > 0 %>
+<span>
+	Number of listed errors: <strong><%= @errors.count %></strong>
+</span>
+<div>
+	<table class="errors">
+	  	<%= render :partial => "shared/table_head" %>
+		<%= render :partial => "shared/table_body", :object => @errors %>
+	</table>
+</div>
+<% else %>
+	<h4>No file found.</h4>
+<% end #Count%>
+</center>
+<br />

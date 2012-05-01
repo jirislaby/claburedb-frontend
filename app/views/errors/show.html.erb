@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<h3>Showing error <%=  @error.id %></h3>
+<p>
+  <%= render :partial => "shared/error_details_table", :object => @error %>
+  <br/>
+  <% if @source_output != "" %>
+	  <hr/>
+	  <h3>Source: </h3>
+	  <br/>
+	  <%= sanitize @source_output %>
+  <% end %>
+  <a href="/errors/source_code/<%= @error.id %>/#n<%= @error.loc_line-5%>">Show source code.</a>
+</p>

@@ -1,0 +1,34 @@
+
+
+<%= javascript_include_tag params[:controller] %>
+<%= stylesheet_link_tag params[:controller] %>
+
+<h1>Listing tools: </h1>
+<center>
+<table class="categories">
+  <thead class="header">
+    <th>Project<br/><span class="description">version</span></th>
+	<th>Real errors</th>
+	<th>False positives</th>
+	<th>Unclassified</th>
+	<th>Overall count</th>
+  </thead>
+  <tbody>
+	<% @tools.each do |tool| %>
+	  <tr>
+	    <td><h5><a href="/tools/tool/<%= tool.id %>"><%= tool.name %></a></h5>
+			<span class="description">
+	    		<%= tool.version %>
+			</span>
+		</td>
+		<td class="count"><a href="/tools/tool/<%= tool.id %>/1"><%= tool.errors.count(:conditions => "marking >= 1") %></a></td>
+		<td class="count"><a href="/tools/tool/<%= tool.id %>/-1"><%= tool.errors.count(:conditions => "marking <= -1") %></a></td>
+		<td class="count"><a href="/tools/tool/<%= tool.id %>/0"><%= tool.errors.count(:conditions => "marking == 0") %></a></td>
+		<td class="count"><a href="/tools/tool/<%= tool.id %>"><%= tool.errors.count() %></a></td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+</center>
+<br />
+
