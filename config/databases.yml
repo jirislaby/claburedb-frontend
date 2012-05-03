@@ -1,10 +1,10 @@
 databases:
-    - id:  old
-      title:  Old database
-      file: db/database.db
-      default: false
+#    - id:  old
+#      title:  Old database
+#      file: db/database.db
+#      default: false
       
     - id:   database_kernel2628
       title:  Linux Kernel 2.6.28
-      file: db/database_kernel2628.db
+      file: db/database.db
       default: true
