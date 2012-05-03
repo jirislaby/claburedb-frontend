@@ -1,6 +1,3 @@
-<%= javascript_include_tag params[:controller] %>
-<%= stylesheet_link_tag params[:controller] %>
-
 <h1>Listing errors from <%= @tool.name %> <%= @tool.version %>
 	<%= if @marking != nil
 		    (@marking<"0")?"with false marking ": (@marking=="0") ? "with unclassified marking" : "with real marking"	

@@ -144,6 +144,10 @@ $(document).ready(function(){
 		}
         
     });
+	
+	$("#select_db").change(function(){
+		$("#select_db_form").submit();
+	});
     
 });
 

@@ -22,10 +22,7 @@ a,a:visited{
 a:active, a:hover{
 	color: #1088F9;
 }
-/*
-a.open_details, a.close_details{
-	text-decoration:none;
-} */
+
 table{
  	-moz-box-shadow: 0px 0px 10px #333;
   	-webkit-box-shadow: 0px 0px 10px #333;
@@ -80,7 +77,9 @@ color: #333333;
 .top_bar{
 	float:left;
 	width: 100%;
-	height: 50px;
+	/*
+height: 50px;
+*/
 	border-bottom: 1px solid #333333;
 	margin-bottom: 10px;
 }
@@ -88,7 +87,9 @@ color: #333333;
 	float:left;
 }
 .search_bar{
-	float:right;
+	float:left;
+	width:100%;
+	padding: 10px 0px 15px 0px;
 }
 
 .search_bar input[type="text"]{
@@ -102,6 +103,17 @@ color: #333333;
 	width: 200px;
 	padding-left: 5px;
 	padding-right: 5px;
+	float:right;
+}
+.search_bar #select_db{
+	border: 1px #333333;
+	-moz-box-shadow: 0px 0px 5px #333333;
+  	-webkit-box-shadow: 0px 0px 5px #333333;
+  	box-shadow: 0px 0px 5px #333333;
+	height: 20px;
+	width: 200px;
+	float:left;
+	margin-top: 5px;
 }
 
 #content_wrap{

@@ -1,10 +1,7 @@
-<%= javascript_include_tag params[:controller] %>
-<%= stylesheet_link_tag params[:controller] %>
-
 <h1>Search results: </h1>
 <center>
 
-<% if @errors.count > 0 %>
+<% if @errors != nil && @errors.count > 0 %>
 <span>
 	Number of listed errors: <strong><%= @errors.count %></strong>
 </span>

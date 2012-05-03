@@ -20,14 +20,14 @@
 			    <a href="/tools/">Show tools</a>
 			</div>
 			<div class="search_bar">
-				<form action="/search/" method="post">
+				
 					<div>
-					<select id="db" >
-						<option value="Linux kernel 2.6.28">Linux kernel 2.6.28</option>
-					</select>
-					<input id="search_input" type="text" name="search" value="Search filename..." />
+						<%= render :partial => "shared/database_select" %>
+						<form action="/search/" method="post">
+							<input id="search_input" type="text" name="search" value="Search filename..." />
+						</form>
 					</div>
-				</form>
+
 				<!--RegExp? <input type="checkbox" name="regexp" value="true"/>-->
 			</div>
 		</div>

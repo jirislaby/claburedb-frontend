@@ -1,0 +1,23 @@
+<form action="/switchdb/" id="select_db_form" method="post">
+	<div>
+	<select id="select_db" name="db_id">
+		<% dbs = YAML::load(File.open("#{Rails.root}/config/databases.yml")) %>
+		<% dbs["databases"].each do |db| 
+			if session[:db_id] != nil || session[:db_id] != ""
+				if session[:db_id] == db["id"] %>
+                   <option value="<%= db["id"] %>" selected="selected"><%= db["title"] %></option>
+				<% else %>
+				   <option value="<%= db["id"] %>"><%= db["title"] %></option>
+				<% end %>
+			<% else %>
+				   <option value="<%= db["id"] %>"><%= db["title"] %></option>
+			<% end %>
+			    
+		<% end %>
+		
+	</select>
+	<noscript>
+		<input type="submit"/>
+	</noscript>
+	</div>
+</form>

@@ -20,8 +20,8 @@ DbTest2::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
   match 'errors/order/:order/:direction' => 'errors#order'
   match 'errors/source_code/:id' => 'errors#source_code'
-  match 'errors/get_details/:id' => 'errors#error_details', :constraints => { :id => /\d.+/ }
-  match 'errors/get_details_source/:id' => 'errors#error_details_source', :constraints => { :id => /\d.+/ }
+  match 'errors/get_details/:id' => 'errors#error_details', :constraints => { :id => /\d+/ }
+  match 'errors/get_details_source/:id' => 'errors#error_details_source', :constraints => { :id => /\d+/ }
   
   
   match 'files/show/:sha1' => 'files#show'
@@ -38,15 +38,15 @@ DbTest2::Application.routes.draw do
   match 'type/all/:marking/:order/:direction' => 'type#all'
   
   match 'project/project/' => 'project#index'
-  match 'project/project/:id' => 'project#project', :constraints => { :id => /\d.+/ }
-  match 'project/project/:id/:marking' => 'project#project', :constraints => { :id => /\d.+/ }
-  match 'project/project/:id/:order/:direction' => 'project#project', :constraints => { :id => /\d.+/ }
-  match 'project/project/:id/:marking/:order/:direction' => 'project#project', :constraints => { :id => /\d.+/ }
+  match 'project/project/:id' => 'project#project', :constraints => { :id => /\d+/ }
+  match 'project/project/:id/:marking' => 'project#project', :constraints => { :id => /\d+/ }
+  match 'project/project/:id/:order/:direction' => 'project#project', :constraints => { :id => /\d+/ }
+  match 'project/project/:id/:marking/:order/:direction' => 'project#project', :constraints => { :id => /\d+/ }
 
   match 'project/' => 'project#index'
   match 'project/version/' => 'project#index'
-  match 'project/version/:id/:version' => 'project#version', :constraints => { :version => /[^\/]*/, :id => /\d.+/  }
-  match 'project/version/:id/:version/:order/:direction' => 'project#version', :constraints => { :version => /[^\/]*/, :id => /\d.+/  }
+  match 'project/version/:id/:version' => 'project#version', :constraints => { :version => /[^\/]*/, :id => /\d+/  }
+  match 'project/version/:id/:version/:order/:direction' => 'project#version', :constraints => { :version => /[^\/]*/, :id => /\d+/  }
 
   
   match 'tools/' => 'tools#index'
@@ -57,6 +57,9 @@ DbTest2::Application.routes.draw do
   match 'tools/tool/:id/:marking/:order/:direction' => 'tools#tool'
  
   match 'search' => 'search#index'
+  
+  match 'switchdb' => 'switchdb#index'
+  
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
