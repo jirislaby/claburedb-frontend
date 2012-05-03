@@ -1,5 +1,5 @@
 <form action="/switchdb/" id="select_db_form" method="post">
-	<div>
+	<div><b>Project:</b>
 	<select id="select_db" name="db_id">
 		<% dbs = YAML::load(File.open("#{Rails.root}/config/databases.yml")) %>
 		<% dbs["databases"].each do |db| 
