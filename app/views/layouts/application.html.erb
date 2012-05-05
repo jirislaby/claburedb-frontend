@@ -24,27 +24,23 @@
 <body>
 	<div id="content_wrap">
 		<a href="#top" name="top"></a>
+		<div class="top_bar">
 		<h1 class="main_title"><%= link_to('/index') do %>
 			<span style="color:#001010;">Clabure</span><span style="color:#e03040;">DB</span>: Classified Bug-Reports Database
 		<% end %></h1>
-		<div class="top_bar">
 			<div style="margin-bottom: 2ex;">
 				<%= render :partial => "shared/database_select" %>
 			</div>
-			<div class="menu_bar">
-				<%= link_to 'Show All Errors', '/type/all/'%> |
-			    <a href="/tools/">Show tools</a>
-			</div>
-			<div class="search_bar">
-				
-				<form action="/search/" method="post">
-					<div>
+			<form action="/search/" method="post">
+				<div class="menu_bar">
+					<%= link_to 'Show All Errors', '/type/all/'%> |
+					    <a href="/tools/">Show tools</a>
+					<span class="search_bar">
 					<input id="search_input" type="text" name="search" value="Search filename..." />
-					</div>
-				</form>
-
+					</span>
+				</div>
+			</form>
 				<!--RegExp? <input type="checkbox" name="regexp" value="true"/>-->
-			</div>
 		</div>
 		<br/>
 		<%= yield %>
