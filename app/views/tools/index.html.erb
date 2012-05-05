@@ -3,24 +3,36 @@
 <center>
 <table class="categories">
   <thead class="header">
-    <th>Project<br/><span class="description">version</span></th>
+    <th>Project<br/><span class="description">Description</span></th>
 	<th>Real errors</th>
 	<th>False positives</th>
 	<th>Unclassified</th>
 	<th>Overall count</th>
   </thead>
   <tbody>
-	<% @tools.each do |tool| %>
+	<% Tool.order('name').each do |tool|
+		real_count = tool.errors.count(:conditions => "marking >= 1");
+		false_count = tool.errors.count(:conditions => "marking <= -1");
+		unclass_count = tool.errors.count(:conditions => "marking == 0");
+		overall_count = tool.errors.count(); %>
 	  <tr>
-	    <td><h5><a href="/tools/tool/<%= tool.id %>"><%= tool.name %></a></h5>
+	    <td><h5><a href="/tools/tool/<%= tool.id %>"><%= tool.name %></a><% if tool.version != nil %> <%= tool.version %><% end %></h5>
 			<span class="description">
-	    		<%= tool.version %>
+			<%= tool.description %>
 			</span>
 		</td>
-		<td class="count"><a href="/tools/tool/<%= tool.id %>/1"><%= tool.errors.count(:conditions => "marking >= 1") %></a></td>
-		<td class="count"><a href="/tools/tool/<%= tool.id %>/-1"><%= tool.errors.count(:conditions => "marking <= -1") %></a></td>
-		<td class="count"><a href="/tools/tool/<%= tool.id %>/0"><%= tool.errors.count(:conditions => "marking == 0") %></a></td>
-		<td class="count"><a href="/tools/tool/<%= tool.id %>"><%= tool.errors.count() %></a></td>
+		<td class="count">
+			<% if real_count != 0 %><a href="/tools/tool/<%= tool.id %>/1"><% end %><%= real_count %><% if real_count != 0 %></a><% end %>
+		</td>
+		<td class="count">
+			<% if false_count != 0 %><a href="/tools/tool/<%= tool.id %>/-1"><% end %><%= false_count %><% if real_count != 0 %></a><% end %>
+		</td>
+		<td class="count">
+			<% if unclass_count != 0 %><a href="/tools/tool/<%= tool.id %>/0"><% end %><%= unclass_count %><% if real_count != 0 %></a><% end %>
+		</td>
+		<td class="count">
+			<% if overall_count != 0 %><a href="/tools/tool/<%= tool.id %>"><% end %><%= overall_count %><% if overall_count != 0 %></a><% end %>
+		</td>
 	  </tr>
 	<% end %>
   </tbody>
