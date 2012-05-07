@@ -115,6 +115,7 @@ class ErrorsController < ApplicationController
     render :template => 'shared/_error_details_ajax',:layout => false
   end
   
+  
   def error_details_source
     @error = Error.find(params[:id])
     require 'rubygems'
@@ -122,28 +123,32 @@ class ErrorsController < ApplicationController
     require 'coderay'
     source = ""
 
-    file = helperGetFile(@error.loc_file_hash)
     
-    if  file != "" 
-      source = CodeRay.highlight(file, :c, {:line_numbers => :inline, :css => :class})
+    highlighted_file = helperGetHighlightedFile(@error.loc_file_hash)
+    
+    if  highlighted_file == "" 
+      file = helperGetFile(@error.loc_file_hash)
+      if file != ""
+        source = CodeRay.highlight(file, :c, {:line_numbers => :inline, :css => :class})
+      end
+    else 
+      source = highlighted_file
     end
     
-    line_number = 0 #because of div wrapper 
-    source_out = ""
+    #line_number = 0 #because of div wrapper 
+    #source_out = source
     
-    source.each_line do |line| 
-          if line_number == @error.loc_line
-              source_out += "<div class=\"error_line_highlight\">"+line+"</div>"
-          else
-              source_out += line
-          end
-          line_number += 1
-    end
-    if(source_out == "")
-      @source_output = ""
-    else
-      @source_output = source_out
-    end
+    
+     #source.each_line do |line| 
+      #   if line_number == @error.loc_line
+      #       source_out += "<div class=\"error_line_highlight\">"+line+"</div>"
+      #    else
+      #        source_out += line
+      #    end
+      #   line_number += 1
+    #end
+   
+    @source_output = source #source_out
     render :template => 'shared/_error_details_source_ajax',:layout => false
   end
   

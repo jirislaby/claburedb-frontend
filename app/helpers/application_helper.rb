@@ -7,7 +7,29 @@ module ApplicationHelper
       if hash != nil
         sha_path = "#{Rails.root}"+"/"+Rails.application.config.sha1_path
         zip_file_path = sha_path+hash[0..1]+"/"+hash+".zip"
-        zip_file_path
+        #zip_file_path
+        if File.exists?(zip_file_path)
+          Zip::ZipFile.open(zip_file_path) { |zip_file|
+              zip_file.each { |f|
+                  file = zip_file.read(f)
+             }
+          }
+        end
+      end
+      
+      #Return file string:
+      ""+file
+  end
+  
+  def helperGetHighlightedFile(hash)
+      require 'zip/zip'
+      require 'zip/zipfilesystem'
+      file = ""
+      
+      if hash != nil
+        sha_path = "#{Rails.root}"+"/"+Rails.application.config.sha1_path
+        zip_file_path = sha_path+hash[0..1]+"/"+hash+"-hl.zip"
+        #zip_file_path
         if File.exists?(zip_file_path)
           Zip::ZipFile.open(zip_file_path) { |zip_file|
               zip_file.each { |f|

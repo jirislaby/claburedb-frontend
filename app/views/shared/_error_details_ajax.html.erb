@@ -1,6 +1,6 @@
-<table class="categories">
+<table class="categories ajax_details">
   	  <tr>
-	  	<td><b>User:</b></td>
+	  	<td class="first_row"><b>User:</b></td>
 		<td class="black_font"> <%= link_to @error.user.name, @error.user %></td>
 	  </tr>
 	  <tr>
@@ -15,6 +15,12 @@
 	  	<td><b>Project version:</b></td>
 		<td><a href="/project/version/<%=@error.project.id%>/<%=@error.project_version%>"><%= @error.project_version %></a></td>
 	  </tr>
+	  <% if @error.confirmation != nil && @error.confirmation != "" %>
+	  <tr>
+	  	<td><b>Confirmation:</b></td>
+		<td><%= @error.confirmation %></a></td>
+	  </tr>
+	  <% end %>
 	  <tr>
 	  	<td><b>Tools:</b></td>
 		<td><% @error.tools.each do |tool| %>

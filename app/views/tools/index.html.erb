@@ -3,11 +3,13 @@
 <center>
 <table class="categories">
   <thead class="header">
-    <th>Project<br/><span class="description">Description</span></th>
-	<th>Real errors</th>
-	<th>False positives</th>
-	<th>Unclassified</th>
-	<th>Overall count</th>
+	<tr>
+		<th>Tool<br/><span class="description">Description</span></th>
+		<th>Real errors</th>
+		<th>False positives</th>
+		<th>Unclassified</th>
+		<th>Overall count</th>
+	</tr>
   </thead>
   <tbody>
 	<% Tool.order('name').each do |tool|
@@ -16,7 +18,15 @@
 		unclass_count = tool.errors.count(:conditions => "marking == 0");
 		overall_count = tool.errors.count(); %>
 	  <tr>
-	    <td><h5><a href="/tools/tool/<%= tool.id %>"><%= tool.name %></a><% if tool.version != nil %> <%= tool.version %><% end %></h5>
+	    <td><h5>
+			<% if tool.url != nil && tool.url != "" %>
+				<a href="<%= tool.url %>">
+			<% end %>
+			<%= tool.name %> <%= tool.version %>
+			<% if tool.url != nil && tool.url != "" %>
+				</a>
+			<% end %>
+		</h5>
 			<span class="description">
 			<%= tool.description %>
 			</span>

@@ -27,6 +27,12 @@
 	  	<td><b>Project version:</b></td>
 		<td><a href="/project/version/<%=@error.project.id%>/<%=@error.project_version%>"><%= @error.project_version %></a></td>
 	  </tr>
+	  <% if @error.confirmation != nil && @error.confirmation != "" %>
+	  <tr>
+	  	<td><b>Confirmation:</b></td>
+		<td><%= @error.confirmation %></a></td>
+	  </tr>
+	  <% end %>
 	  <tr>
 	  	<td><b>Tools:</b></td>
 		<td><% @error.tools.each do |tool| %>

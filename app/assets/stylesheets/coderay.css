@@ -21,8 +21,8 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
   user-select: none;
 }
 .CodeRay .line-numbers a {
-  background-color: hsl(180,65%,90%) !important;
-  color: gray !important;
+  background-color: hsl(180,65%,90%);
+  color: gray;
   text-decoration: none !important;
 }
 .CodeRay .line-numbers a:target { color: blue !important; }

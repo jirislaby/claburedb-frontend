@@ -33,7 +33,7 @@
 		    	<h5>
 				    <a href="/type/<%= type.id %>"><%= type.name %></a>
 					<% if type.CWE_error != nil %>
-						&nbsp;&nbsp;<a href="http://cwe.mitre.org/data/definitions/<%= type.CWE_error %>.html"><img src="/assets/cwe.png" alt="CWE" title="CWE number: "/></a><%= type.CWE_error %>
+						&nbsp;&nbsp;<a href="http://cwe.mitre.org/data/definitions/<%= type.CWE_error %>.html"><img src="/assets/cwe10.png" alt="CWE" title="CWE number: "/></a><span class="CWE_number"><%= type.CWE_error %></span>
 					<% end %>
 				</h5>
 				<span class="description">

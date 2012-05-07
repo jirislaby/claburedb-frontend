@@ -13,6 +13,12 @@ $(document).ready(function(){
         }
     });
     
+	$(".open_details_stopped").live('click',function(e){
+        e.preventDefault();
+	});
+	$(".show_source_code_stopped").live('click',function(e){
+        e.preventDefault();
+	});
 		
     $(".open_details").live('click',function(e){
         e.preventDefault();
@@ -24,9 +30,15 @@ $(document).ready(function(){
 			this_id = $(this).attr("id");
 			this_row = $("tr#e" + this_id);
 			anchor.html('<img src="/assets/loader.gif"/>');
+
+			/** PREVENT OPENING OTHERS **/
 			$(".open_details").each(function(){
 				 $(this).removeClass("open_details").addClass("open_details_stopped");
 			});
+			$(".show_source_code").each(function(){
+				 $(this).removeClass("show_source_code").addClass("show_source_code_stopped");
+			});
+			
 			$.ajax({
 				url: "/errors/get_details/" + this_id,
 				cache: true,
@@ -45,6 +57,9 @@ $(document).ready(function(){
 					anchor.show();
 					$(".open_details_stopped").each(function(){
 						 $(this).removeClass("open_details_stopped").addClass("open_details");
+					});
+					$(".show_source_code_stopped").each(function(){
+						 $(this).addClass("show_source_code").removeClass("show_source_code_stopped");
 					});
 				}
 			});			
@@ -68,9 +83,15 @@ $(document).ready(function(){
 			this_id = $(this).attr("id");
 			this_row = $("tr.o" + this_id);
 			anchor.html('<img src="/assets/loader.gif"/>');
-			$(".show_source_code").each(function(){
-				 $(this).removeClass("show_source_code").addClass("file_stopped");
+			
+			/** PREVENT OPENING OTHERS **/
+			$(".open_details").each(function(){
+				 $(this).removeClass("open_details").addClass("open_details_stopped");
 			});
+			$(".show_source_code").each(function(){
+				 $(this).removeClass("show_source_code").addClass("show_source_code_stopped");
+			});
+			
 			$.ajax({
 				url: "/errors/get_details_source/" + this_id,
 				cache: true,
@@ -85,13 +106,20 @@ $(document).ready(function(){
 					//scroll_to = 
 					source_code_el.scrollTop($('tr.s'+this_id+' a[name=n'+line_number+']').position().top - source_code_el.position().top - 150);
 					
+					error_line = $("a#line"+this_id).text();
 					
+					$(".s"+this_id+" div.CodeRay a[name=n"+error_line+"]").css("background-color", "#DD7700");
+					$(".s"+this_id+" div.CodeRay a[name=n"+error_line+"]").css("color", "#000000");
+				    $(".s"+this_id+" div.CodeRay a[name=n"+error_line+"]").parent().css("background-color", "#DD7700");
 
 				},
 				complete: function(){
 					anchor.show();
-					$(".file_stopped").each(function(){
-						 $(this).removeClass("file_stopped").addClass("show_source_code");
+					$(".open_details_stopped").each(function(){
+						 $(this).removeClass("open_details_stopped").addClass("open_details");
+					});
+					$(".show_source_code_stopped").each(function(){
+						 $(this).addClass("show_source_code").removeClass("show_source_code_stopped");
 					});
 				}
 			});				
@@ -147,6 +175,9 @@ $(document).ready(function(){
 	
 	$("#select_db").change(function(){
 		$("#select_db_form").submit();
+	});
+	$(".line-numbers a").live('click',function(e){
+		e.preventDefault();
 	});
     
 });
