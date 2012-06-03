@@ -89,17 +89,17 @@ class ErrorsController < ApplicationController
       source = highlighted_file
     end
     
-#    line_number = 0 #because of div wrapper 
-#    source_out = ""
+    line_number = 0 #because of div wrapper 
+    source_out = ""
     
-#    source.each_line do |line| 
-#          if line_number == @error.loc_line
-#              source_out += "<div class=\"error_line_highlight\">"+line+"</div>"
-#          else
-#              source_out += line
-#          end
-#          line_number += 1
-#    end 
+    source.each_line do |line| 
+          if line_number == @error.loc_line
+              source_out += "<div class=\"error_line_highlight\">"+line+"</div>"
+          else
+              source_out += line
+          end
+          line_number += 1
+    end 
     
     
 #    if(source_out == "")
@@ -107,7 +107,7 @@ class ErrorsController < ApplicationController
 #    else
 #      @source_output = source_out
 #    end
-    @source_output = source.html_safe
+    @source_output = source_out.html_safe
     
     respond_to do |format|
       format.html # show.html.erb
