@@ -94,9 +94,11 @@ class ErrorsController < ApplicationController
     
     source.each_line do |line| 
           if line_number == @error.loc_line
-              source_out += "<div class=\"error_line_highlight\">"+line+"</div>"
+             source_out << "<div class=\"error_line_highlight\">"
+	     source_out << line
+	     source_out << "</div>"
           else
-              source_out += line
+             source_out << line
           end
           line_number += 1
     end 
