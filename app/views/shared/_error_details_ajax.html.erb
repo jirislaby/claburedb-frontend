@@ -21,6 +21,7 @@
 		<td><%= @error.confirmation %></a></td>
 	  </tr>
 	  <% end %>
+	  
 	  <tr>
 	  	<td><b>Tools:</b></td>
 		<td><% @error.tools.each do |tool| %>
@@ -45,5 +46,6 @@
 	  </tr>
   </table>
   <% if @error.loc_file_hash!=nil %>
-   <h3><a href="#" class="show_source_code dark" id="<%= @error.id %>">&#9660; Show source code</a></h3>
+   <br/>
+   <img id="source_loader<%= @error.id %>" src="/assets/loader.gif"/>
   <% end %>

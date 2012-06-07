@@ -133,6 +133,7 @@ class ErrorsController < ApplicationController
 
     
     highlighted_file = helperGetHighlightedFile(@error.loc_file_hash)
+    source = ""
     
     if  highlighted_file == "" 
       file = helperGetFile(@error.loc_file_hash)
@@ -157,7 +158,13 @@ class ErrorsController < ApplicationController
     #end
    
     @source_output = source.html_safe #source_out
-    render :template => 'shared/_error_details_source_ajax',:layout => false
+    
+    if source != "" 
+        render :template => 'shared/_error_details_source_ajax',:layout => false
+    else 
+        render :nothing => true
+    end
+    
   end
   
   
