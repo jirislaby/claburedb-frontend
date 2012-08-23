@@ -3,7 +3,7 @@
 	<% @errors.each do |error| %>
 	  <tr id="e<%= error.id %>" <%=  (error.marking<0)?"class='false'": (error.marking==0) ? "class='unclass'" : "class='positive'" %>>
 	    <td><%= i %></td>
-		<td><%= error.error_type.name %> <%= error.note != nil ? "("+error.note+")" : "" %></td>
+		<td><%= error.error_type.name %> <%= error.error_subtype != nil ? "("+error.error_subtype+")" : "" %></td>
 		<td><a href="/errors/<%= error.id %>" class="open_details" id="<%= error.id %>"> <%= error.loc_file %> [<span id="line<%= error.id %>"><%= error.loc_line %></span>] <span id="arrow<%= error.id %>">&#9660;</span></a></td>
 		<td><a href="<%= error.url %>"><%= error.url %></a></td>
 		<td><%= (error.marking<0)?"False positive": (error.marking==0) ? "Unclassified" : "Real error" %></td>
