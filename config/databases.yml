@@ -1,8 +1,8 @@
 databases:
-#    - id:  old
-#      title:  Old database
-#      file: db/database.db
-#      default: false
+    - id:  svcomp2012
+      title:  SVCOMP 2012
+      file: db/svcomp2012.db
+      default: false
       
     - id:   database_kernel2628
       title:  Linux Kernel 2.6.28
