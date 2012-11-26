@@ -2,7 +2,7 @@
 	<div><b>Project:</b>
 		<select id="select_db" name="db_id">
 			<% dbs = YAML::load(File.open("#{Rails.root}/config/databases.yml")) %>
-			<% dbs["databases"].each do |db| 
+			<% dbs["databases"].sort_by{ |h| h["title"] }.each do |db| 
 				if session[:db_id] != nil || session[:db_id] != ""
 					if session[:db_id] == db["id"] %>
 					   <option value="<%= db["id"] %>" selected="selected"><%= db["title"] %></option>
