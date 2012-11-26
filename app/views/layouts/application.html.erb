@@ -37,6 +37,7 @@
 					    <a href="/tools/">Show tools</a>
 					<span class="search_bar">
 					<input id="search_input" type="text" name="search" value="Search filename..." />
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token.to_s %>" />
 					</span>
 				</div>
 			</form>

@@ -3,7 +3,7 @@ databases:
       title:  SVCOMP 2012
       file: db/svcomp2012.db
       default: false
-      
+
     - id:   database_kernel2628
       title:  Linux Kernel 2.6.28
       file: db/database.db

@@ -1,7 +1,7 @@
 <tbody>
 	<% i = 1 %>
 	<% @errors.each do |error| %>
-	  <tr id="e<%= error.id %>" <%=  (error.marking<0)?"class='false'": (error.marking==0) ? "class='unclass'" : "class='positive'" %>>
+	  <tr id="e<%= error.id %>" class="<%=  (error.marking<0)?"false": (error.marking==0) ? "unclass" : "positive" %>">
 	    <td><%= i %></td>
 		<td><%= error.error_type.name %> <%= error.error_subtype != nil ? "("+error.error_subtype+")" : "" %></td>
 		<td><a href="/errors/<%= error.id %>" class="open_details" id="<%= error.id %>"> <%= error.loc_file %> [<span id="line<%= error.id %>"><%= error.loc_line %></span>] <span id="arrow<%= error.id %>">&#9660;</span></a></td>
