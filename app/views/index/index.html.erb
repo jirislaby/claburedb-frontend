@@ -40,6 +40,9 @@
 		  <tr>
 		    <td>
 		    	<h5><%= type.name %>
+					<% if type.long_description != nil %>
+						&nbsp;<img src="/assets/info10.png" alt="info" title="<%= type.long_description %>" />
+					<% end %>
 					<% if type.CWE_error != nil %>
 						&nbsp;&nbsp;<a href="http://cwe.mitre.org/data/definitions/<%= type.CWE_error %>.html"><img src="/assets/cwe10.png" alt="CWE" title="CWE number: "/></a><span class="CWE_number"><%= type.CWE_error %></span>
 					<% end %>

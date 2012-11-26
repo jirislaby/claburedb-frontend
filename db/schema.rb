@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20111014122059) do
   create_table "error_type", :force => true do |t|
     t.string  "name"
     t.string  "short_description", :null => false
+    t.string  "long_description"
     t.integer "CWE_error"
   end
 
