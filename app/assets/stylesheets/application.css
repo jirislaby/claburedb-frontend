@@ -130,7 +130,13 @@ color: #333333;
 h1.main_title{
 	font-size: 33px;
 }
+h1.main_title a {
+	text-decoration: none;
+}
 
+h1.main_title a:hover {
+	color: #333;
+}
 
 .error_line_highlight{
 	background-color: #DD7700;
@@ -165,7 +171,7 @@ h1.main_title{
 	color: #111111;
 	background-color: #EFEFEF;
 }
-.erros tr a:hover{
+.errors tr a:hover{
 	color: #1088F9;
 }
 
