@@ -1,5 +1,5 @@
 class Error < ActiveRecord::Base
-  set_table_name 'error'
+  self.table_name = 'error'
   belongs_to :user, :foreign_key => "user"
   belongs_to :error_type, :foreign_key => "error_type"
   belongs_to :project, :foreign_key => "project"
