@@ -35,13 +35,20 @@ class ErrorsController < ApplicationController
     
     file.each_line do |line| 
        if line_number >= @error.loc_line - plus_minus_lines && line_number <= @error.loc_line + plus_minus_lines
-          file_out += line
+          file_out << line
        end
        line_number += 1
     end 
+
+    line_start = @error.loc_line - plus_minus_lines+1;
+    # if the error is on a line < plus_minus_lines
+    if line_start < 0
+	line_start = 0;
+    end
     
     if  file_out != "" 
-      source = CodeRay.highlight(file_out, :c, {:line_numbers => :inline, :css => :class, :line_number_start => @error.loc_line - plus_minus_lines+1})
+      source = CodeRay.highlight(file_out, :c, {:line_numbers => :inline,
+		      :css => :class, :line_number_start => line_start})
     end
     
     line_number = 0 #because of div wrapper 
@@ -49,9 +56,9 @@ class ErrorsController < ApplicationController
     source_out = ""
     source.each_line do |line| 
           if line_number == plus_minus_lines
-              source_out += "<div class=\"error_line_highlight\">"+line+"</div>"
+              source_out << "<div class=\"error_line_highlight\">"+line+"</div>"
           else
-              source_out += line
+              source_out << line
           end
           line_number += 1
     end 
