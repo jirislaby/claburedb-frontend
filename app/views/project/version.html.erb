@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag params[:controller] %>
 
 <h1>Listing errors from project <%= @project.name %>
-<%= if @errors != nil && @errors.length > 0 
+<%= if @errors != nil && @errors.length > 0
 		@errors[0].project_version
 	end
 %>

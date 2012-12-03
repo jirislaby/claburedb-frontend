@@ -3,7 +3,7 @@ module ApplicationHelper
       require 'zip/zip'
       require 'zip/zipfilesystem'
       file = ""
-      
+
       if hash != nil
         sha_path = "#{Rails.root}"+"/"+Rails.application.config.sha1_path
         zip_file_path = sha_path+hash[0..1]+"/"+hash+".zip"
@@ -16,16 +16,16 @@ module ApplicationHelper
           }
         end
       end
-      
+
       #Return file string:
       ""+file
   end
-  
+
   def helperGetHighlightedFile(hash)
       require 'zip/zip'
       require 'zip/zipfilesystem'
       file = ""
-      
+
       if hash != nil
         sha_path = "#{Rails.root}"+"/"+Rails.application.config.sha1_path
         zip_file_path = sha_path+hash[0..1]+"/"+hash+"-hl.zip"
@@ -38,16 +38,16 @@ module ApplicationHelper
           }
         end
       end
-      
+
       #Return file string:
       ""+file
   end
-  
+
   def helperGetErrorSurroundings(hash)
     require 'zip/zip'
       require 'zip/zipfilesystem'
       file = "";
-      
+
       if hash != nil
         sha_path = "#{Rails.root}"+"/"+Rails.application.config.sha1_path
         zip_file_path = sha_path+hash[0..1]+"/"+hash+".zip"
@@ -60,13 +60,13 @@ module ApplicationHelper
           }
         end
       end
-      
-      
+
+
       file_out = ""
       line_number = 0
       plus_minus_lines = 20
-      
-      file.each_line do |line| 
+
+      file.each_line do |line|
          if line_number >= @error.loc_line - plus_minus_lines && line_number <= @error.loc_line + plus_minus_lines
             file_out += line
          end

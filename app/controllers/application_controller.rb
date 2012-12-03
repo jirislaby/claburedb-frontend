@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :select_db
   helper :all
   require 'yaml'
-  
+
   private
 
     def select_db
@@ -17,9 +17,9 @@ class ApplicationController < ActionController::Base
 
     def default_db
       dbs = YAML::load(File.open("#{Rails.root}/config/databases.yml"))
-      
+
       dbs["databases"].each do |db|
-        if db["default"] 
+        if db["default"]
           ActiveRecord::Base.establish_connection(
             :adapter => 'sqlite3',
             :database => db["file"]
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
     def other_db(db_id)
       dbs = YAML::load(File.open("#{Rails.root}/config/databases.yml"))
-      
+
       dbs["databases"].each do |db|
         if db["id"] == db_id
           ActiveRecord::Base.establish_connection(
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
           )
         end
       end
-      
+
 
     end
 

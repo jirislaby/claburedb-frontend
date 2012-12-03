@@ -2,7 +2,7 @@ module FilesHelper
   def helperGetFile(hash)
       require 'zip/zip'
       require 'zip/zipfilesystem'
-      
+
       sha_path = "#{Rails.root}"+"/"+Rails.application.config.sha1_path
       zip_file_path = sha_path+hash[0..1]+"/"+hash+".zip"
       puts zip_file_path
@@ -12,7 +12,7 @@ module FilesHelper
               file = zip_file.read(f)
          }
       }
-      
+
       ""+file;
   end
 end
