@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-DbTest2::Application.load_tasks
+ClabureDB::Application.load_tasks

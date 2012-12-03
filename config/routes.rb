@@ -1,4 +1,4 @@
-DbTest2::Application.routes.draw do
+ClabureDB::Application.routes.draw do
   get "files/unzip"
 
   get "files/savefile"
