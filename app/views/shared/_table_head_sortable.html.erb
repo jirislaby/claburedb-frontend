@@ -1,18 +1,22 @@
+<%
+if @links_direction == nil then
+	@links_direction = {
+		'error_type' => "desc",
+		'loc_file' => "desc",
+		'id' => "desc",
+		'marking' => "desc"
+	}
+end
+if @query == nil
+	@query = {}
+end
+%>
 <thead>
-	  <tr>
-	  	<% if @links_direction == nil then
-		@links_direction = {
-	     'error_type' => "desc",
-	      'loc_file' => "desc",
-	      'id' => "desc",
-		  'marking' => "desc"
-	    }
-		end
-		%>
-	    <th>#</th>
-		  <th><%= link_to "Error Type (Subtype)", "/"+params[:controller]+"/"+@ordering_method+""+@params+"/error_type/"+@links_direction["error_type"] %></th>
-		  <th><%= link_to "File [Line]", "/"+params[:controller]+"/"+@ordering_method+""+@params+"/loc_file/"+@links_direction["loc_file"]  %></th>
-		  <th>Url </th>
-		  <th><%= link_to "Marking", "/"+params[:controller]+"/"+@ordering_method+""+@params+"/marking/"+@links_direction["marking"]  %></th>
-	  </tr>
+	<tr>
+		<th>#</th>
+		<th><%= link_to("Error Type (Subtype)", @query.merge(:order => "error_type", :order_dir => @links_direction["error_type"])) %></th>
+		<th><%= link_to("File [Line]", @query.merge(:order => "loc_file", :order_dir => @links_direction["loc_file"])) %></th>
+		<th>Url</th>
+		<th><%= link_to("Marking", @query.merge(:order => "marking", :order_dir => @links_direction["marking"])) %></th>
+	</tr>
 </thead>

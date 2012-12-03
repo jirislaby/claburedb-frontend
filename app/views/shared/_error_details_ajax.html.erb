@@ -1,7 +1,7 @@
 <table class="categories ajax_details">
   	  <tr>
 	  	<td class="first_row"><b>User:</b></td>
-		<td class="black_font"> <%= link_to @error.user.name, @error.user %></td>
+		<td class="black_font"> <%= link_to @error.user.name, project_user_path(project_id(), @error.user.id) %></td>
 	  </tr>
 	  <tr>
 	  	<td><b>Error type description:</b></td>
@@ -9,12 +9,12 @@
 	  </tr>
 	  <tr>
 	  	<td><b>Project:</b></td>
-		<td><a href="/project/project/<%=@error.project.id%>"><%= @error.project.name %></a></td>
+		<td><%= link_to @error.project_info.name, project_path(project_id()) %></td>
 	  </tr>
 	  <% if @error.project_version != nil %>
 	  <tr>
 	  	<td><b>Project version:</b></td>
-		<td><a href="/project/version/<%=@error.project.id%>/<%=@error.project_version%>"><%= @error.project_version %></a></td>
+		<td><%= link_to @error.project_version, project_path(project_id(), :version => @error.project_version) %></td>
 	  </tr>
 	  <% end %>
 	  <% if @error.confirmation != nil && @error.confirmation != "" %>
@@ -27,11 +27,14 @@
 	  <tr>
 	  	<td><b>Tools:</b></td>
 		<td><% @error.tools.each do |tool| %>
-				<a href="/tools/tool/<%= tool.id %>">
-				<%= tool.name %> <%= tool.version!=nil ? "("+tool.version+")" : "" %>
-				</a><br/>
+			<%= link_to project_tool_path(project_id(), tool.id) do %>
+				<%= tool.name %>
+				<%= if tool.version != nil
+					" (" + tool.version + ")"
+				end %>
 			<% end %>
-		</td>
+			<br/>
+		<% end %></td>
 	  </tr>
 	  <% if @error.url != nil && @error.url != ""  %>
  	  <tr>

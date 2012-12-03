@@ -1,46 +1,39 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-  before_filter :select_db
-  helper :all
-  require 'yaml'
 
-  private
+	protect_from_forgery
+	before_filter :connect
+	attr_reader :project_id
+	attr_reader :files_dir
+	helper_method :project_id
 
-    def select_db
+	@project_id = nil
+	@files_dir = nil
 
-      if session[:db_id] == nil || session[:db_id] == ""
-        default_db
-      else
-        other_db(session[:db_id])
-      end
-    end
+	def initialize
+		super
+		@files_dir = "#{Rails.root}/" +
+				Rails.application.config.sha1_path
+	end
 
-    def default_db
-      dbs = YAML::load(File.open("#{Rails.root}/config/databases.yml"))
+	def connect
+		Project.establish_connection(
+			:adapter => 'sqlite3',
+			:database => 'db/databases.db')
+	end
 
-      dbs["databases"].each do |db|
-        if db["default"]
-          ActiveRecord::Base.establish_connection(
-            :adapter => 'sqlite3',
-            :database => db["file"]
-          )
-        end
-      end
-    end
-
-    def other_db(db_id)
-      dbs = YAML::load(File.open("#{Rails.root}/config/databases.yml"))
-
-      dbs["databases"].each do |db|
-        if db["id"] == db_id
-          ActiveRecord::Base.establish_connection(
-            :adapter => 'sqlite3',
-            :database => db["file"]
-          )
-        end
-      end
-
-
-    end
+	def select_db(prj_id)
+		if prj_id == nil
+			raise "invalid project id"
+		end
+		prj_id = prj_id.to_i(10)
+		db = Project.find(prj_id)
+		if db == nil
+			raise "invalid database selected"
+		end
+		ActiveRecord::Base.establish_connection(
+				:adapter => 'sqlite3',
+				:database => "db/" + db.file)
+		@project_id = prj_id
+	end
 
 end

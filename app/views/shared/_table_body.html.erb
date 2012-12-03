@@ -1,13 +1,11 @@
 <tbody>
-	<% i = 1 %>
-	<% @errors.each do |error| %>
-	  <tr id="e<%= error.id %>" class="<%=  (error.marking<0)?"false": (error.marking==0) ? "unclass" : "positive" %>">
-	    <td><%= i %></td>
+	<% @errors.each_with_index do |error, i| %>
+	  <tr id="et<%= error.id %>" class="<%= (error.marking<0)?"false": (error.marking==0) ? "unclass" : "positive" %>">
+	    <td><%= i + 1 %></td>
 		<td><%= error.error_type.name %> <%= error.error_subtype != nil ? "("+error.error_subtype+")" : "" %></td>
-		<td><a href="/errors/<%= error.id %>" class="open_details" id="<%= error.id %>"> <%= error.loc_file %> [<span id="line<%= error.id %>"><%= error.loc_line %></span>] <span id="arrow<%= error.id %>">&#9660;</span></a></td>
+		<td><%= link_to(project_error_path(project_id(), error.id), { :class => 'open_details', :id => "e" + error.id.to_s }) do %><%= error.loc_file %> [<span id="line<%= error.id %>"><%= error.loc_line %></span>] <span id="arrow<%= error.id %>">&#9660;</span><% end %></td>
 		<td><a href="<%= error.url %>"><%= error.url %></a></td>
 		<td><%= (error.marking<0)?"False positive": (error.marking==0) ? "Unclassified" : "Real error" %></td>
 	  </tr>
-	<% i+=1 %>
 	<% end %>
 </tbody>

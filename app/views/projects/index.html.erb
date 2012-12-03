@@ -1,0 +1,45 @@
+ <div>
+	<p>This is a database of known bugs and false positives in real software projects. So far, we support only the <b>Linux Kernel 2.6.28</b> (<a href="http://claburedb.fi.muni.cz/pkg.html">package</a>) and selected kinds of bugs. The main purpose of the database is to support research and development in the area of bug-finding techniques and tools by providing data for their automatic evaluation.</p>
+	<p>We are currently focused on filling the database. We plan to support more software projects and more kinds of bug later. This web interface of the database is also an interim one.</p>
+	<p>There is also a page with <a href="http://claburedb.fi.muni.cz/doc.html">documentation</a> (including <a href="http://claburedb.fi.muni.cz/doc.html#download">download</a> section). If you have any further questions or suggestions, please feel free to <a href="mailto:claburedb@fi.muni.cz">contact us</a>.</p>
+	<h3>Updates</h3>
+	<ul>
+	<li>Nov 19th 2012 &ndash; many more reports classified, added SVCOMP sub-database</li>
+	<li>Aug 23rd 2012 &ndash; most of the uploaded reports sorted, added division by zero bugs</li>
+	<li>May 21st 2012 &ndash; uploaded 339 "Leaving function in locked state" reports (sorting in progress)</li>
+	<li>May 19th 2012 &ndash; minor interface updates</li>
+	<li>May 1st 2012 &ndash; database published in this new shiny interface</li>
+	<li>Apr 30th 2012 &ndash; some more locking errors from stanse</li>
+	</ul>
+ </div>
+
+
+<h1>Listing projects: </h1>
+<table style="margin-left: auto; margin-right: auto;" class="categories">
+  <thead class="header">
+    <tr>
+	<th>Project<br/><span class="description">description</span></th>
+	<th>Real errors</th>
+	<th>False positives</th>
+	<th>Unclassified</th>
+	<th>Overall count</th>
+    </tr>
+  </thead>
+  <tbody>
+	<% @projects.each do |project| %>
+	  <tr>
+	    <td><h5><a href="<%= project_path(project.db_idx) %>"><%= project.name %></a></h5>
+			<span class="description">
+	    		<%= project.description %>
+			</span>
+		</td>
+		<td class="count"><%= condLink(project.real_count, project_errors_path(project.db_idx, :marking => "1")) %></td>
+		<td class="count"><%= condLink(project.false_count, project_errors_path(project.db_idx, :marking => "-1")) %></td>
+		<td class="count"><%= condLink(project.unclass_count, project_errors_path(project.db_idx, :marking => "0")) %></td>
+		<td class="count"><%= condLink(project.overall_count, project_errors_path(project.db_idx)) %></td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+<br />
+

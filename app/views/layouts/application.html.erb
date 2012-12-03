@@ -3,10 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title>ClabureDB</title>
+<% if project_id() != nil %>
+  <script type="text/javascript">
+	var project_id = <%= project_id() %>;
+  </script>
+<% end %>
   <%= stylesheet_link_tag    "application" %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'jquery.js' %>
   <%= javascript_include_tag 'errors.js' %>
+
+<% if Rails.env.production? %>
   <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -20,28 +27,27 @@
   })();
 
   </script>
+<% end %>
 </head>
 <body>
 	<div id="content_wrap">
 		<a href="#top" name="top"></a>
 		<div class="top_bar">
-		<h1 class="main_title"><%= link_to('/index') do %>
+		<h1 class="main_title"><%= link_to('/') do %>
 			<span style="color:#001010;">Clabure</span><span style="color:#e03040;">DB</span>: Classified Bug-Reports Database
 		<% end %></h1>
-			<div style="margin-bottom: 2ex;">
-				<%= render :partial => "shared/database_select" %>
-			</div>
-			<form action="/search/" method="post">
+		<% if project_id() != nil %>
+			<h3><b>Project:</b> <%= link_to(ProjectInfo.first.name, project_path(project_id())) %></h3>
+			<%= form_tag(project_path(project_id()) + '/search', :method => "get") do %>
 				<div class="menu_bar">
-					<%= link_to 'Show All Errors', '/type/all/'%> |
-					    <a href="/tools/">Show tools</a>
+					<%= link_to 'Show All Errors', project_errors_path(project_id()) %> |
+					<%= link_to 'Show Tools', project_tools_path(project_id()) %>
 					<span class="search_bar">
 					<input id="search_input" type="text" name="search" value="Search filename..." />
-					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token.to_s %>" />
 					</span>
 				</div>
-			</form>
-				<!--RegExp? <input type="checkbox" name="regexp" value="true"/>-->
+			<% end %>
+		<% end %>
 		</div>
 		<br/>
 		<%= yield %>

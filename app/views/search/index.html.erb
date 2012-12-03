@@ -1,18 +1,14 @@
-<h1>Search results: </h1>
-<center>
+<h1>Search results for "<%= params[:search] %>"</h1>
 
-<% if @errors != nil && @errors.count > 0 %>
-<span>
-	Number of listed errors: <strong><%= @errors.count %></strong>
-</span>
-<div>
-	<table class="errors">
-	  	<%= render :partial => "shared/table_head" %>
-		<%= render :partial => "shared/table_body", :object => @errors %>
-	</table>
-</div>
+<% if @errors.count > 0 %>
+<div>Number of listed errors: <strong><%= @errors.count %></strong></div>
+<br/>
+<table style="margin-left: auto; margin-right: auto;" class="errors">
+	<%= render :partial => "shared/table_head_sortable" %>
+	<%= render :partial => "shared/table_body", :object => @errors %>
+</table>
 <% else %>
 	<h4>No file found.</h4>
 <% end #Count%>
-</center>
+
 <br />

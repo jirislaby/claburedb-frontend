@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
-  self.table_name = 'project'
-  has_many :errors, :foreign_key => "project"
+#	has_many :project_info
+#	has_many :errors
+#	has_many :tools
+#	has_many :types
 end

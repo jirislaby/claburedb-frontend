@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
-  #Show all users
+	before_filter :select_db
+
+	def select_db
+		super(params[:project_id])
+	end
+
   def index
     @users = User.all
 
