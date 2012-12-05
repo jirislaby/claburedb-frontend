@@ -4,8 +4,8 @@
 <div>Number of listed errors: <strong><%= @errors.count %></strong></div>
 <br/>
 <table style="margin-left: auto; margin-right: auto;" class="errors">
-	<%= render :partial => "shared/table_head_sortable" %>
-	<%= render :partial => "shared/table_body", :object => @errors %>
+	<%= render :partial => "shared/table_head" %>
+	<%= render :partial => "shared/table_body" %>
 </table>
 <% else %>
 	<h4>No file found.</h4>

@@ -2,6 +2,6 @@
 <h2>Showing <%= @user.name %>'s recent errors</h2>
 <br/>
 <table class="errors">
-  <%= render :partial => "shared/table_head_sortable" %>
-  <%= render :partial => "shared/table_body", :object => @errors %>
+	<%= render :partial => "shared/table_head" %>
+	<%= render :partial => "shared/table_body" %>
 </table>
