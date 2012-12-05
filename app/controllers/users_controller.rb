@@ -1,47 +1,35 @@
 class UsersController < ApplicationController
+
+	helper :application
+	include ApplicationHelper
 	before_filter :select_db
 
 	def select_db
 		super(params[:project_id])
 	end
 
-  def index
-    @users = User.all
+	def index
+		@users = User.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      #format.json { render json: @users }
-    end
-  end
+		respond_to do |format|
+			format.html
+		end
+	end
 
-  # GET /users/1
-  # GET /users/1.json
-  # Show user's details
-  def show
-    @user = User.find(params[:id])
+	def show
+		@user = User.find(params[:id])
 
-    # Replace password characters with asterisks
-    @user.password[0..@user.password.length] = "*"*@user.password.length
+		# Replace password characters with asterisks
+		@user.password = "*****"
 
-    # Get 5 most recent errors by user
-    @errors = User.find(params[:id]).errors.limit(50).order("timestamp_enter DESC")
+		dir_order = get_dir_order()
 
-    # replace empty error url with "-"
-    @errors.each do |error|
-      if error.url == nil
-        error.url = "-"
-      end
-    end
+		@errors = handle_marking(@user.errors.includes(:error_type).
+				limit(50).order(dir_order))
 
-    respond_to do |format|
-      format.html # show.html.erb
-      #format.json { render :json => @users_errors}
-      #format.json { render :json => @user}
-
-    end
-  end
-
-
-
+		respond_to do |format|
+			format.html
+		end
+	end
 
 end
