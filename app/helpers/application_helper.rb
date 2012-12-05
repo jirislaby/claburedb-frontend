@@ -46,48 +46,65 @@ module ApplicationHelper
 		errors
 	end
 
-  def helperGetFile(hash)
-      require 'zip/zip'
-      require 'zip/zipfilesystem'
-      file = ""
+	def helperGetFileXZ(file)
+		require 'xz'
 
-      if hash != nil
-        sha_path = "#{Rails.root}"+"/"+Rails.application.config.sha1_path
-        zip_file_path = sha_path+hash[0..1]+"/"+hash+".zip"
-        #zip_file_path
-        if File.exists?(zip_file_path)
-          Zip::ZipFile.open(zip_file_path) { |zip_file|
-              zip_file.each { |f|
-                  file = zip_file.read(f)
-             }
-          }
-        end
-      end
+		XZ.decompress_stream(File.open(file, "rb"))
+	end
 
-      #Return file string:
-      ""+file
-  end
+	def highlight(code)
+		CodeRay.scan(code, :c).html(:css => :class,
+				:break_lines => true, :line_numbers => :inline)
+	end
 
-  def helperGetHighlightedFile(hash)
-      require 'zip/zip'
-      require 'zip/zipfilesystem'
-      file = ""
+	def finalize(code)
+		code = '<div class="CodeRay"><div class="code"><pre>' << code <<
+				'</pre></div></div>'
+		code.html_safe
+	end
 
-      if hash != nil
-        sha_path = "#{Rails.root}"+"/"+Rails.application.config.sha1_path
-        zip_file_path = sha_path+hash[0..1]+"/"+hash+"-hl.zip"
-        #zip_file_path
-        if File.exists?(zip_file_path)
-          Zip::ZipFile.open(zip_file_path) { |zip_file|
-              zip_file.each { |f|
-                  file = zip_file.read(f)
-             }
-          }
-        end
-      end
+	def helperGetHighlightedFile(hash, params = {})
+		require 'coderay'
 
-      #Return file string:
-      ""+file
-  end
+		if !(hash =~ /^[0-9a-f]{40}$/)
+			raise "invalid hash"
+		end
+
+		base_name = files_dir() + hash[0..1] + "/" + hash
+
+		if File.exists?(base_name + "-hl.xz")
+			data = helperGetFileXZ(base_name + "-hl.xz")
+		elsif File.exists?(base_name + ".xz")
+			data = highlight(helperGetFileXZ(base_name + ".xz"))
+		else
+			return nil
+		end
+
+		hl = params[:highlight]
+		crop = params[:crop]
+
+		if !hl
+			return finalize(data)
+		end
+
+		out = ""
+		line_number = 1
+		data.each_line { |line|
+			if (crop && line_number > hl + crop)
+				break
+			end
+			if (!crop || hl - crop <= line_number)
+				if hl == line_number
+					out << '<span class="error_line_highlight">' <<
+						line << "</span>"
+				else
+					out << line
+				end
+			end
+			line_number += 1
+		}
+
+		finalize(out)
+	end
 
 end

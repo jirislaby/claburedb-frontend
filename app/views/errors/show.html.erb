@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h3>Showing error <%=  @error.id %></h3>
+<h3>Showing error <%= @error.id %></h3>
   <%= render :partial => "shared/error_details_table", :object => @error %>
 <br/>
 <% if @source_output != "" %>

@@ -11,8 +11,7 @@ gem "rake", ">= 10.0.2"
 gem 'execjs'
 gem 'therubyracer'
 gem 'coderay' 
-gem 'archive-tar-minitar'         # needed for unzipping tar files
-gem 'rubyzip'                     # needed for unzipping zip files
+gem 'ruby-xz'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -24,7 +24,9 @@ class FilesController < ApplicationController
 	end
 
 	def show
-		@file_content = helperGetHighlightedFile(params[:id]).html_safe
+		@file_content = helperGetHighlightedFile(params[:id])
+		@file_content ||= '<div style="color: red;">Not found!</div>'.
+				html_safe
 
 		respond_to do |format|
 			format.html
