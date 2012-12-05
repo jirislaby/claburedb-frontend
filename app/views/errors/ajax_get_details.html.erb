@@ -1,31 +1,30 @@
 <table class="categories ajax_details">
-  	  <tr>
-	  	<td class="first_row"><b>User:</b></td>
-		<td class="black_font"> <%= link_to @error.user.name, project_user_path(project_id(), @error.user.id) %></td>
-	  </tr>
-	  <tr>
-	  	<td><b>Error type description:</b></td>
+	<tr>
+		<td class="first_row"><b>User:</b></td>
+		<td class="black_font"><%= link_to(@error.user.name, project_user_path(project_id(), @error.user.id)) %></td>
+	</tr>
+	<tr>
+		<td><b>Error type description:</b></td>
 		<td><%= @error.error_type.short_description %></td>
-	  </tr>
-	  <tr>
-	  	<td><b>Project:</b></td>
-		<td><%= link_to @error.project_info.name, project_path(project_id()) %></td>
-	  </tr>
-	  <% if @error.project_version != nil %>
-	  <tr>
-	  	<td><b>Project version:</b></td>
-		<td><%= link_to @error.project_version, project_path(project_id(), :version => @error.project_version) %></td>
-	  </tr>
-	  <% end %>
-	  <% if @error.confirmation != nil && @error.confirmation != "" %>
-	  <tr>
-	  	<td><b>Confirmation:</b></td>
+	</tr>
+	<tr>
+		<td><b>Project:</b></td>
+		<td><%= link_to(@error.project_info.name, project_path(project_id())) %></td>
+	</tr>
+	<% if @error.project_version != nil %>
+	<tr>
+		<td><b>Project version:</b></td>
+		<td><%= link_to(@error.project_version, project_path(project_id(), :version => @error.project_version)) %></td>
+	</tr>
+	<% end %>
+	<% if @error.confirmation != nil && @error.confirmation != "" %>
+	<tr>
+		<td><b>Confirmation:</b></td>
 		<td><%= @error.confirmation %></a></td>
-	  </tr>
-	  <% end %>
-	
-	  <tr>
-	  	<td><b>Tools:</b></td>
+	</tr>
+	<% end %>
+	<tr>
+		<td><b>Tools:</b></td>
 		<td><% @error.tools.each do |tool| %>
 			<%= link_to project_tool_path(project_id(), tool.id) do %>
 				<%= tool.name %>
@@ -33,24 +32,22 @@
 					" (" + tool.version + ")"
 				end %>
 			<% end %>
-			<br/>
+			<br />
 		<% end %></td>
-	  </tr>
-	  <% if @error.url != nil && @error.url != ""  %>
- 	  <tr>
-	  	<td><b>Url:</b></td>
+	</tr>
+	<% if @error.url != nil && @error.url != ""%>
+ 	<tr>
+		<td><b>Url:</b></td>
 		<td><a href="<%= @error.url %>"><%= @error.url %></a></td>
-	  </tr>
-	  <% end %>
-	
- 	
-	
-	  <tr>
-	  	<td><b>Entered:</b></td>
+	</tr>
+	<% end %>
+
+	<tr>
+		<td><b>Entered:</b></td>
 		<td><%= @error.timestamp_enter %></td>
-	  </tr>
-  </table>
-  <% if @error.loc_file_hash!=nil %>
-   <br/>
-   <img id="source_loader<%= @error.id %>" src="/assets/loader.gif"/>
-  <% end %>
+	</tr>
+</table>
+<% if @error.loc_file_hash!=nil %>
+	 <br />
+	 <img id="source_loader<%= @error.id %>" src="/assets/loader.gif" />
+<% end %>
