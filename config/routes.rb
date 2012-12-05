@@ -10,9 +10,9 @@ ClabureDB::Application.routes.draw do
 
 	resources :files, :constraints => { :id => /[0-9a-f]{40}/ }
 
-	match 'projects/:project_id/errors/:id/get_details' => 'errors#error_details',
+	match 'projects/:project_id/errors/:id/get_details' => 'errors#get_details',
 			:constraints => { :project_id => /\d+/, :id => /\d+/ }
-	match 'projects/:project_id/errors/:id/get_details_source' => 'errors#error_details_source',
+	match 'projects/:project_id/errors/:id/get_source' => 'errors#get_source',
 			:constraints => { :project_id => /\d+/, :id => /\d+/ }
 
 	# You can have the root of your site routed with "root"

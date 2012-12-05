@@ -32,7 +32,7 @@ function ajax_load(id, anchor, async_load, add_to_hash) {
 			anchor.removeClass("open_details_stopped").addClass("close_details");
 
 			$.ajax({
-				url: "/projects/" + this_proj + "/errors/" + this_id + "/get_details_source",
+				url: "/projects/" + this_proj + "/errors/" + this_id + "/get_source",
 				cache: true,
 				async: async_load,
 				success: function(html) {
