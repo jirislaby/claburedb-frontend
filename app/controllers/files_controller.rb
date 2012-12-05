@@ -1,8 +1,5 @@
 class FilesController < ApplicationController
 
-	helper :application
-	include ApplicationHelper
-
 	def index
 		raise "not allowed"
 		@files = []

@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+	helper :application
+	include ApplicationHelper
 	protect_from_forgery
 	before_filter :connect
 	attr_reader :project_id

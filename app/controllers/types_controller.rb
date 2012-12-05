@@ -1,7 +1,5 @@
 class TypesController < ApplicationController
 
-	helper :application
-	include ApplicationHelper
 	before_filter :select_db
 
 	def select_db
