@@ -24,12 +24,8 @@ function ajax_load(id, anchor, async_load, add_to_hash) {
 		success: function(html) {
 			this_row.after('<tr class="o' + this_id + '"><td colspan="6">' + html + '</td></tr>');
 
-			if (add_to_hash) {
-				if (window.location.hash.length > 2)
-					window.location.hash = window.location.hash + "|h" + this_id;
-				else
-					window.location.hash = "h" + this_id;
-			}
+			if (add_to_hash)
+				window.location.hash += "h" + this_id + "|";
 
 			$("span#arrow"+this_id).html("&#9650;");
 
@@ -120,7 +116,7 @@ $(document).ready(function(){
 		$(this).removeClass("opened").removeClass("close_details").addClass("open_details");
 
 		if (window.location.hash.length > 2) {
-			var re = new RegExp("(^h" + this_id + "|h" + this_id + ")");
+			var re = new RegExp("\\bh" + this_id + "\\|");
 			window.location.hash = window.location.hash.replace(re, "");
 		}
 	});
@@ -137,7 +133,7 @@ $(window).load(function () {
 	hashes_string = window.location.hash;
 	if (hashes_string.charAt(1) == 'h' && hashes_string.length > 2) {
 		/* skip hash mark */
-		hashes_string = hashes_string.substr(1, hashes_string.length);
+		hashes_string = hashes_string.substr(1, hashes_string.length - 2);
 		hashes_array = hashes_string.split('|');
 
 		for (var i = 0; i < hashes_array.length; i++) {
