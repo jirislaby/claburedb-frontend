@@ -1,4 +1,33 @@
-function ajax_load(id, anchor, async_load, add_to_hash) {
+function ajax_load_source(this_id, async_load) {
+	$.ajax({
+		url: "/projects/" + project_id + "/errors/" + this_id + "/get_source",
+		cache: true,
+		async: async_load,
+		success: function(html) {
+			if (html.length <= 10)
+				return;
+
+			$("tr.o" + this_id).after('<tr class="s' + this_id + '"><td colspan="6">' + html + '</td></tr>');
+
+			var line_number = $("#line" + this_id).text();
+
+			var source_code_el = $('tr.s' + this_id + ' div.error_details_source');
+
+			var line_top = $('tr.s' + this_id + ' a[name=n' + line_number + ']').position().top
+			var source_div_pos = source_code_el.position().top
+			var source_div_h = source_code_el.height()
+			source_code_el.scrollTop(line_top - source_div_pos - source_div_h/2);
+		},
+		complete: function() {
+			$("#source_loader" + this_id).remove();
+			$(".open_details_stopped").each(function() {
+				 $(this).removeClass("open_details_stopped").addClass("open_details");
+			});
+		}
+	});
+}
+
+function ajax_load(this_id, anchor, async_load, add_to_hash) {
 	if (anchor.hasClass("opened"))
 		throw "ajax_load called from invalid context";
 
@@ -10,15 +39,10 @@ function ajax_load(id, anchor, async_load, add_to_hash) {
 	$(".open_details").each(function() {
 		 $(this).addClass("open_details_stopped").removeClass("open_details");
 	});
-	$(".show_source_code").each(function(){
-		 $(this).addClass("show_source_code_stopped").removeClass("show_source_code");
-	});
 
-	this_proj = project_id;
-	this_id = id;
-	this_row = $("tr#et" + this_id);
+	var this_row = $("tr#et" + this_id);
 	$.ajax({
-		url: "/projects/" + this_proj + "/errors/" + this_id + "/get_details",
+		url: "/projects/" + project_id + "/errors/" + this_id + "/get_details",
 		cache: true,
 		async: async_load,
 		success: function(html) {
@@ -31,38 +55,7 @@ function ajax_load(id, anchor, async_load, add_to_hash) {
 
 			anchor.removeClass("open_details_stopped").addClass("close_details");
 
-			$.ajax({
-				url: "/projects/" + this_proj + "/errors/" + this_id + "/get_source",
-				cache: true,
-				async: async_load,
-				success: function(html) {
-					if (html.length > 10) {
-						$("tr.o" + this_id).after('<tr class="s' + this_id + '"><td colspan="6">' + html + '</td></tr>');
-
-						line_number = $("#line"+this_id).text();
-
-						source_code_el = $('tr.s'+this_id+' div.error_details_source');
-
-						//scroll to =
-						source_code_el.scrollTop($('tr.s'+this_id+' a[name=n'+line_number+']').position().top - source_code_el.position().top - 150);
-
-						error_line = $("#line"+this_id).text();
-
-						$(".s"+this_id+" div.CodeRay a[name=n"+error_line+"]").css("background-color", "#DD7700");
-						$(".s"+this_id+" div.CodeRay a[name=n"+error_line+"]").css("color", "#000000");
-						$(".s"+this_id+" div.CodeRay a[name=n"+error_line+"]").parent().css("background-color", "#DD7700");
-					}
-				},
-				complete: function() {
-					$("#source_loader" + this_id).remove();
-					$(".open_details_stopped").each(function() {
-						 $(this).removeClass("open_details_stopped").addClass("open_details");
-					});
-					$(".show_source_code_stopped").each(function() {
-						 $(this).addClass("show_source_code").removeClass("show_source_code_stopped");
-					});
-				}
-			});
+			ajax_load_source(this_id)
 		},
 
 		complete: function(){
@@ -82,9 +75,6 @@ $(document).ready(function(){
 	});
 
 	$(".open_details_stopped").live('click',function(e){
-		e.preventDefault();
-	});
-	$(".show_source_code_stopped").live('click',function(e){
 		e.preventDefault();
 	});
 

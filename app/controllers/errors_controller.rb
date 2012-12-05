@@ -47,17 +47,18 @@ class ErrorsController < ApplicationController
 	def get_details
 		@error = Error.includes(:user, :error_type, :project_info).
 				find(params[:id])
-		render :template => 'shared/_error_details_ajax',
+		render :template => 'errors/ajax_get_details',
 			:layout => false
 	end
 
 	def get_source
 		@error = Error.find(params[:id])
 
-		@source_output = helperGetHighlightedFile(@error.loc_file_hash)
+		@source_output = helperGetHighlightedFile(@error.loc_file_hash,
+				:highlight => @error.loc_line)
 
 		if @source_output
-			render :template => 'shared/_error_details_source_ajax',
+			render :template => 'errors/ajax_get_source',
 				:layout => false
 		else
 			render :nothing => true
