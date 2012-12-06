@@ -1,6 +1,7 @@
 ClabureDB::Application.routes.draw do
 
 	resources :projects, :constraints => { :id => /\d+/ } do
+		get 'download', :on => :member
 		resources :errors, :constraints => { :id => /\d+/ }
 		resources :tools, :constraints => { :id => /\d+/ }
 		resources :types, :constraints => { :id => /\d+/ }

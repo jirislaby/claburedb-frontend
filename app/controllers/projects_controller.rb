@@ -40,4 +40,8 @@ class ProjectsController < ApplicationController
 		end
 	end
 
+	def download
+		db = Project.find(project_id())
+		send_file(Rails.root.to_s + "/db/" + db.file)
+	end
 end

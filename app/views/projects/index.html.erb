@@ -36,12 +36,13 @@
 	<th>False positives</th>
 	<th>Unclassified</th>
 	<th>Overall count</th>
+	<th></th>
     </tr>
   </thead>
   <tbody>
 	<% @projects.each do |project| %>
 	  <tr>
-	    <td><h5><a href="<%= project_path(project.db_idx) %>"><%= project.name %></a></h5>
+	    <td><h5><%= link_to(project.name, project_path(project.db_idx)) %></h5>
 			<span class="description">
 	    		<%= project.description %>
 			</span>
@@ -50,6 +51,7 @@
 		<td class="count"><%= condLink(project.false_count, project_errors_path(project.db_idx, :marking => "-1")) %></td>
 		<td class="count"><%= condLink(project.unclass_count, project_errors_path(project.db_idx, :marking => "0")) %></td>
 		<td class="count"><%= condLink(project.overall_count, project_errors_path(project.db_idx)) %></td>
+		<td><h5><%= link_to('Download', download_project_path(project.db_idx)) %></h5></td>
 	  </tr>
 	<% end %>
   </tbody>
