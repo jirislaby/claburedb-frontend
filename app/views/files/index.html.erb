@@ -1,0 +1,4 @@
+<h1>Files:</h1>
+<% @files.sort.each do |file| %>
+	<div style="font-family: Courier New;"><%= link_to(file, file_path(file)) %></div>
+<% end %>
