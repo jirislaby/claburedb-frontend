@@ -2,20 +2,20 @@
 
 <table class="users">
   <thead>
-  	<tr>
-	    <th>Id</th>
+	<tr>
+		<th>Id</th>
 		<th>Name</th>
-	    <th>Affilitation</th>
-	    <th></th>
-    </tr>
+		<th>Affiliation</th>
+		<th>Errors</th>
+	</tr>
   </thead>
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.id %></td>
+	<td><%= user.id %></td>
 	<td><%= user.name %></td>
-    <td><%= user.affilitation %></td>
-    <td><%= link_to('Show', project_user_path(project_id(), user.id)) %></td>
+	<td><%= user.affilitation %></td>
+	<td><%= link_to('Show', project_user_path(project_id(), user.id)) %></td>
   </tr>
 <% end %>
 </table>

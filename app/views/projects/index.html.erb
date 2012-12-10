@@ -9,9 +9,8 @@
 	<p>We are currently focused on filling the database. We plan to support
 	more software projects. This web interface still lacks support for
 	database upload.</p>
-	<p>There is also a page with <a href="http://claburedb.fi.muni.cz/doc.html">documentation</a>
-	(including <a href="http://claburedb.fi.muni.cz/doc.html#download">download</a>
-	section). If you have any further questions or suggestions, please feel
+	<p>There is also a page with <a href="http://claburedb.fi.muni.cz/doc.html">documentation</a>.
+	If you have any further questions or suggestions, please feel
 	free to <a href="mailto:claburedb@fi.muni.cz">contact us</a>.</p>
 	<h3>Updates</h3>
 	<ul>
@@ -36,7 +35,7 @@
 	<th>False positives</th>
 	<th>Unclassified</th>
 	<th>Overall count</th>
-	<th></th>
+	<th>Download</th>
     </tr>
   </thead>
   <tbody>
@@ -51,7 +50,7 @@
 		<td class="count"><%= condLink(project.false_count, project_errors_path(project.db_idx, :marking => "-1")) %></td>
 		<td class="count"><%= condLink(project.unclass_count, project_errors_path(project.db_idx, :marking => "0")) %></td>
 		<td class="count"><%= condLink(project.overall_count, project_errors_path(project.db_idx)) %></td>
-		<td><h5><%= link_to('Download', download_project_path(project.db_idx)) %></h5></td>
+		<td style="text-align: center;"><h5><%= link_to('Link', download_project_path(project.db_idx)) %></h5></td>
 	  </tr>
 	<% end %>
   </tbody>
