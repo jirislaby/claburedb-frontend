@@ -30,7 +30,8 @@ module ApplicationHelper
 			order_val = params[:order]
 			order = 'error_type.name'
 		else
-			order_val = order = 'id'
+			order_val = 'id'
+			order = 'error.id'
 		end
 
 		@links_direction[order_val] = other_dir
