@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem "json", ">= 1.4"
 gem "rake", ">= 0.9"
 gem 'execjs'
+gem 'therubyracer'
 gem 'coderay' 
 gem 'ruby-xz'
 
