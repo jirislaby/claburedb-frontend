@@ -4,7 +4,6 @@
 	    <td><%= i + 1 %></td>
 		<td><%= error.error_type.name %> <%= error.error_subtype != nil ? "("+error.error_subtype+")" : "" %></td>
 		<td><%= link_to(project_error_path(project_id(), error.id), { :class => 'open_details', :id => "e" + error.id.to_s }) do %><%= error.loc_file %> [<span id="line<%= error.id %>"><%= error.loc_line %></span>] <span id="arrow<%= error.id %>">&#9660;</span><% end %></td>
-		<td><a href="<%= error.url %>"><%= error.url %></a></td>
 		<td><%= (error.marking<0)?"False positive": (error.marking==0) ? "Unclassified" : "Real error" %></td>
 	  </tr>
 	<% end %>

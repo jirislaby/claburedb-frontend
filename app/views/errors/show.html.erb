@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 <h3>Showing error <%= @error.id %></h3>
-  <%= render :partial => "shared/error_details_table" %>
+<table class="categories">
+  <%= render(:partial => "shared/error_details_table", locals: { full: 1 }) %>
+</table>
 <br/>
 <% if @source_output != nil %>
 	<hr/>
