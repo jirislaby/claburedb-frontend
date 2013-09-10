@@ -31,8 +31,12 @@ class ErrorsController < ApplicationController
 			hl_parm[:crop] = 20
 		end
 
-		@source_output = helperGetHighlightedFile(@error.loc_file_hash,
-				hl_parm);
+		@source_output = nil
+		if @error.loc_file_hash != nil
+			@source_output =
+				helperGetHighlightedFile(@error.loc_file_hash,
+						hl_parm);
+		end
 
 		respond_to do |format|
 			format.html
@@ -51,8 +55,12 @@ class ErrorsController < ApplicationController
 	def get_source
 		@error = Error.find(params[:id])
 
-		@source_output = helperGetHighlightedFile(@error.loc_file_hash,
-				:highlight => @error.loc_line)
+		@source_output = nil
+		if @error.loc_file_hash != nil
+			@source_output =
+				helperGetHighlightedFile(@error.loc_file_hash,
+						:highlight => @error.loc_line)
+		end
 
 		if @source_output
 			render :template => 'errors/ajax_get_source',

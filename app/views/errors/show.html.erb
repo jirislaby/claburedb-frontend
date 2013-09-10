@@ -2,14 +2,16 @@
 <h3>Showing error <%= @error.id %></h3>
   <%= render :partial => "shared/error_details_table" %>
 <br/>
-<% if @source_output != "" %>
+<% if @source_output != nil %>
 	<hr/>
 	<h3>Source: </h3>
 	<%= @source_output %>
-<% end %>
 <%=
 if params[:full] != 'yes'
 	link_to('Show full sources',
 		project_error_path(project_id(), @error.id, :full => 'yes'))
 end
 %>
+<% else %>
+<h3>Sources not available!</h3>
+<% end %>
