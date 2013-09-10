@@ -28,7 +28,7 @@ class ErrorsController < ApplicationController
 		if full
 			@query = { :full => 'yes' }
 		else
-			hl_parm[:crop] = 20
+			hl_parm[:crop] = 30
 		end
 
 		@source_output = nil

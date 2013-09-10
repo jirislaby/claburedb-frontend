@@ -9,7 +9,8 @@
 <%=
 if params[:full] != 'yes'
 	link_to('Show full sources',
-		project_error_path(project_id(), @error.id, :full => 'yes'))
+		project_error_path(project_id(), @error.id, :full => 'yes',
+			:anchor => "n" + (@error.loc_line-5 < 1 ? 1 : @error.loc_line-5).to_s))
 end
 %>
 <% else %>
