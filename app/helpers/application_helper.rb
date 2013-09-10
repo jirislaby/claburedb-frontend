@@ -24,8 +24,11 @@ module ApplicationHelper
 		end
 
 		case params[:order]
-		when 'loc_file', 'marking'
+		when 'marking'
 			order_val = order = params[:order]
+		when 'loc_file'
+			order_val = params[:order]
+			order = 'loc_file, loc_line'
 		when 'error_type'
 			order_val = params[:order]
 			order = 'error_type.name'
