@@ -85,7 +85,8 @@ module ApplicationHelper
 		end
 
 		hl = params[:highlight]
-		crop = params[:crop]
+		crop_top = params[:crop_top]
+		crop_bot = params[:crop_bot]
 
 		if !hl
 			return finalize(data)
@@ -94,10 +95,10 @@ module ApplicationHelper
 		out = ""
 		line_number = 1
 		data.each_line { |line|
-			if (crop && line_number > hl + crop)
+			if (crop_bot && line_number > hl + crop_bot)
 				break
 			end
-			if (!crop || hl - crop <= line_number)
+			if (!crop_top || hl - crop_top <= line_number)
 				if hl == line_number
 					out << '<span class="error_line_highlight">' <<
 						line << "</span>"
