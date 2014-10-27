@@ -10,7 +10,7 @@ class TypesController < ApplicationController
 		dir_order = get_dir_order()
 
 		@type = ErrorType.find(params[:id])
-		@errors = handle_marking(@type.errors.
+		@errors = handle_marking(@type.errs.
 				includes(:user, :error_type).
 				order(dir_order))
 

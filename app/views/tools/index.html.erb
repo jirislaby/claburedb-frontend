@@ -12,10 +12,10 @@
   </thead>
   <tbody>
 	<% Tool.order('name').each do |tool|
-		real_count = tool.errors.count(:conditions => "marking >= 1");
-		false_count = tool.errors.count(:conditions => "marking <= -1");
-		unclass_count = tool.errors.count(:conditions => "marking == 0");
-		overall_count = tool.errors.count(); %>
+		real_count = tool.errs.where("marking >= 1").count();
+		false_count = tool.errs.where("marking <= -1").count();
+		unclass_count = tool.errs.where("marking == 0").count();
+		overall_count = tool.errs.count(); %>
 	  <tr>
 	    <td><h5>
 			<% if tool.url != nil && tool.url != "" %>

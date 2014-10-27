@@ -18,7 +18,7 @@ class ToolsController < ApplicationController
 		dir_order = get_dir_order
 
 		@tool = Tool.find(params[:id])
-		@errors = handle_marking(@tool.errors.includes(:error_type).
+		@errors = handle_marking(@tool.errs.includes(:error_type).
 				order(dir_order))
 
 		respond_to do |format|

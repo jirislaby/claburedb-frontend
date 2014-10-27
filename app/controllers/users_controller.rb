@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
 		dir_order = get_dir_order()
 
-		@errors = handle_marking(@user.errors.includes(:error_type).
+		@errors = handle_marking(@user.errs.includes(:error_type).
 				limit(50).order(dir_order))
 
 		respond_to do |format|

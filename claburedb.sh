@@ -1,7 +1,7 @@
 #!/bin/bash
 
 while :; do
-	rails server -e production
-	sleep 10
+	bundle exec rails server -e production
+	sleep 30
 	echo clabure restarted | mail -s 'clabure restarted' xslaby
 done

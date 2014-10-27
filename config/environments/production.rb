@@ -60,4 +60,5 @@ ClabureDB::Application.configure do
   config.active_support.deprecation = :notify
   
   config.sha1_path = "tmp/sha1/"
+  config.eager_load = true
 end

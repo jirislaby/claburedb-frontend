@@ -1,6 +1,7 @@
 class ProjectInfo < ActiveRecord::Base
 	self.table_name = 'project_info'
-	has_many :errors, :foreign_key => "project"
+	# :errors is a member of ActiveRecord::Base, we use errs and :class_name
+	has_many :errs, :foreign_key => "project", :class_name => "Error"
 	@db_idx = 0
 	def db_idx
 		@db_idx

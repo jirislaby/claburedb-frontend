@@ -29,4 +29,5 @@ ClabureDB::Application.configure do
   config.assets.debug = true
   
   config.sha1_path = "tmp/sha1/"
+  config.eager_load = false
 end

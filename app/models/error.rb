@@ -4,5 +4,5 @@ class Error < ActiveRecord::Base
   belongs_to :error_type, :foreign_key => "error_type"
   belongs_to :project_info, :foreign_key => "project"
   has_many :error_tool_rel
-  has_many :tools, :through => :error_tool_rel, :foreign_key => "error_id"
+  has_many :tools, :through => :error_tool_rel
 end

@@ -10,7 +10,7 @@ gem "json", ">= 1.4"
 gem "rake", ">= 0.9"
 gem 'execjs'
 gem 'therubyracer'
-gem 'coderay' 
+gem 'coderay'
 gem 'ruby-xz'
 
 # Gems used only for assets and not required
