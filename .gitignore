@@ -1,8 +1,11 @@
-.bundle
-log/
-tmp/
-.sass-cache/
 *~
 *.old
-nohup.out
+*.swp
+.bundle
+.sass-cache/
+files
 Gemfile.lock
+log/
+nohup.out
+tmp/
+/vendor/bundle/
