@@ -33,7 +33,7 @@ function ajax_load(this_id, anchor, async_load, add_to_hash) {
 
 	anchor.addClass("opened");
 
-	$("span#arrow" + this_id).html('<img src="/assets/loader.gif"/>');
+	$("span#arrow" + this_id).html('<%= image_tag("loader.gif") %>');
 
 	/** PREVENT OPENING OTHERS **/
 	$(".open_details").each(function() {

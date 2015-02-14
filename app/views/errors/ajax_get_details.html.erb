@@ -2,6 +2,6 @@
 	<%= render(:partial => "shared/error_details_table", locals: { full: 0 }) %>
 </table>
 <% if @error.loc_file_hash!=nil %>
-	 <br />
-	 <img id="source_loader<%= @error.id %>" src="/assets/loader.gif" />
+	<br />
+	<%= image_tag('loader.gif', id: "source_loader" + @error.id.to_s) %>
 <% end %>
