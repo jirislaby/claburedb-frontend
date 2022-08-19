@@ -33,4 +33,6 @@ ClabureDB::Application.configure do
   
   config.sha1_path = "tmp/sha1/"
   config.eager_load = false
+
+  config.hosts << "decibel.fi.muni.cz"
 end

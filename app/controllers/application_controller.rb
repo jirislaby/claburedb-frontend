@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	helper :application
 	include ApplicationHelper
 	protect_from_forgery
-	before_filter :connect
+	before_action :connect
 	attr_reader :project_id
 	attr_reader :files_dir
 	helper_method :project_id

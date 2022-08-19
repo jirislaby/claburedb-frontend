@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-	before_filter :select_db, :except => [ :index ]
+	before_action :select_db, :except => [ :index ]
 
 	def select_db
 		super(params[:id])

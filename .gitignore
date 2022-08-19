@@ -9,3 +9,5 @@ log/
 nohup.out
 tmp/
 /vendor/bundle/
+
+/config/master.key

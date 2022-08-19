@@ -1,6 +1,6 @@
 class TypesController < ApplicationController
 
-	before_filter :select_db
+	before_action :select_db
 
 	def select_db
 		super(params[:project_id])
