@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>= 3.1.0' #, '< 4.2'
+gem 'rails', '>= 6'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem "json", ">= 1.4"
-gem "rake", ">= 0.9"
+gem "json", ">= 2"
+gem "rake", ">= 13"
 gem 'execjs'
 gem 'therubyracer'
 gem 'coderay'
