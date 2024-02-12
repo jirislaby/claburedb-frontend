@@ -6,8 +6,7 @@
 files
 Gemfile.lock
 log/
-nohup.out
 tmp/
-/vendor/bundle/
 
 /config/master.key
+/config/credentials.yml.enc
