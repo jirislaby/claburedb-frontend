@@ -6,7 +6,7 @@ gem "sprockets-rails"
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem "sqlite3", "~> 1.4"
 gem "json", ">= 2"
 gem "rake", ">= 13"
 gem 'execjs'
