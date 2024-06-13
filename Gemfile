@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '>= 6'
+gem "sprockets-rails"
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
