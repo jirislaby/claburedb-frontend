@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 	def connect
 		Project.establish_connection(
 			:adapter => 'sqlite3',
-			:database => 'db/databases.db')
+			:database => 'storage/databases.db')
 	end
 
 	def select_db(prj_id)
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 		end
 		ActiveRecord::Base.establish_connection(
 				:adapter => 'sqlite3',
-				:database => "db/" + db.file)
+				:database => "storage/" + db.file)
 		@project_id = prj_id
 	end
 

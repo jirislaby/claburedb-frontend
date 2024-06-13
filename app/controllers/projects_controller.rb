@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
 		Project.all.each do |db|
 			ActiveRecord::Base.establish_connection(
 					:adapter => 'sqlite3',
-					:database => "db/" + db.file)
+					:database => "storage/" + db.file)
 			found = ProjectInfo.select('*,
 				(SELECT count(id) FROM "error" WHERE error.project = project_info.id) overall_count,
 				(SELECT count(id) FROM "error" WHERE error.project = project_info.id AND marking >= 1) real_count,
@@ -42,6 +42,6 @@ class ProjectsController < ApplicationController
 
 	def download
 		db = Project.find(project_id())
-		send_file(Rails.root.to_s + "/db/" + db.file)
+		send_file(Rails.root.to_s + "/storage/" + db.file)
 	end
 end
