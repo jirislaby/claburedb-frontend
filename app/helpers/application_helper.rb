@@ -76,9 +76,9 @@ module ApplicationHelper
 
 		base_name = files_dir() + hash[0..1] + "/" + hash
 
-		if File.exists?(base_name + "-hl.xz")
+		if File.exist?(base_name + "-hl.xz")
 			data = helperGetFileXZ(base_name + "-hl.xz")
-		elsif File.exists?(base_name + ".xz")
+		elsif File.exist?(base_name + ".xz")
 			data = highlight(helperGetFileXZ(base_name + ".xz"))
 		else
 			return nil
