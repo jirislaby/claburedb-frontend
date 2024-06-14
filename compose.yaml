@@ -1,0 +1,16 @@
+services:
+  ror-claburedb:
+    restart: unless-stopped
+    build: .
+    cpus: ${CPUS}
+    env_file:
+      - master-key.env
+    environment:
+      WEB_CONCURRENCY: ${CPUS}
+    ports:
+      - "3000:3000"
+    volumes:
+    - type: bind
+      source: tmp/sha1
+      target: /home/ruby/claburedb-frontend/tmp/sha1
+
